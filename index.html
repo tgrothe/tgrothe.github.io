@@ -57,6 +57,7 @@
     <hr>
     <div>
       <h2>Test table:</h2>
+      <p>Calculates: <code>(a / b - 1.0) * c + 1.0</code> for Result 1 and <code>1.0 - (a / b - 1.0) * c</code> for Result 2. 40 lines are shown.</p>
       <p><label>Value for c:</label> <input type="number" value="0.5" name="v4" onchange="calc2()"></p>
       <table id="table_b" class="hover" style="width:100%">
         <thead>
@@ -86,10 +87,11 @@
       document.getElementById("r4").innerText = v5;
     }
     calc1();
+    const numberOfRows = 40;
     (function () {
       let tableData = [];
 
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < numberOfRows; i++) {
         let a = 0.0005 * i;
         let b = 0.0025;
         let c = 0.5;
@@ -99,9 +101,6 @@
       }
 
       let tb = document.getElementById("tb_b");
-      while (tb.rows.length > 0) {
-        tb.deleteRow(-1);
-      }
       for (let i = 0; i < tableData.length; i++) {
         let r = tb.insertRow(-1);
         r.insertCell(-1).innerHTML = i + 1;
@@ -120,7 +119,7 @@
       $("#table_b").dataTable().api().clear();
 
       const v4 = parseFloat(document.getElementsByName("v4")[0].value);
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < numberOfRows; i++) {
         let a = 0.0005 * i;
         let b = 0.0025;
         let c = v4;
