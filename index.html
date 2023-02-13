@@ -14,7 +14,7 @@
   </style>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
   <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 </head>
 <body>
   <main>
@@ -23,15 +23,15 @@
       <h2>Simple percentage calculator:</h2>
       <table id="table_a">
         <tr>
-          <td style="width: 175px;"><label for="v1">Start value:</label></td>
+          <td style="width: 175px;"><label>Start value:</label></td>
           <td colspan="3"><input type="number" value="100.0" name="v1" onchange="calc1()"></td>
         </tr>
         <tr>
-          <td><label for="v2">Percent (0 to 100):</label></td>
+          <td><label>Percent (0 to 100):</label></td>
           <td colspan="3"><input type="number" value="0.0" name="v2" onchange="calc1()"></td>
         </tr>
         <tr>
-          <td><label for="v3">Percent (0 to 100):</label></td>
+          <td><label>Percent (0 to 100):</label></td>
           <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="0" name="v3" onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
         </tr>
         <tr>
@@ -57,7 +57,7 @@
     <hr>
     <div>
       <h2>Test table:</h2>
-      <p><label for="v4">Value for c:</label> <input type="number" value="0.5" name="v4" onchange="calc2()"></p>
+      <p><label>Value for c:</label> <input type="number" value="0.5" name="v4" onchange="calc2()"></p>
       <table id="table_b" class="hover" style="width:100%">
         <thead>
           <tr>
