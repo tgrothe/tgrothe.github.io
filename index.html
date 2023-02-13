@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
   <meta charset="UTF-8">
@@ -14,12 +13,9 @@
     }
   </style>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  <script type="text/javascript" charset="utf8"
-    src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 </head>
-
 <body>
   <main>
     <h1>Welcome to My Website</h1>
@@ -36,8 +32,7 @@
         </tr>
         <tr>
           <td><label for="v3">Percent (0 to 100):</label></td>
-          <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="0" name="v3"
-              onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
+          <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="0" name="v3" onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
         </tr>
         <tr>
           <td><label>Percent:</label></td>
@@ -62,10 +57,7 @@
     <hr>
     <div>
       <h2>Test table:</h2>
-      <p>
-        <label for="v4">Value for c:</label>
-        <input type="number" value="0.5" name="v4" onchange="calc2()" />
-      </p>
+      <p><label for="v4">Value for c:</label> <input type="number" value="0.5" name="v4" onchange="calc2()"></p>
       <table id="table_b" class="hover" style="width:100%">
         <thead>
           <tr>
@@ -77,8 +69,7 @@
             <th>Result 2</th>
           </tr>
         </thead>
-        <tbody id="tb_b">
-        </tbody>
+        <tbody id="tb_b"></tbody>
       </table>
     </div>
   </main>
@@ -140,5 +131,4 @@
     }
   </script>
 </body>
-
 </html>
