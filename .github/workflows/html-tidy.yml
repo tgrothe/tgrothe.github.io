@@ -12,8 +12,9 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: Tidy code
-      - run: sudo apt install tidy
-      - run: tidy index.html > index_2.html
+        run: |
+          sudo apt install tidy
+          tidy index.html > index_2.html
       - name: Commit files
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
