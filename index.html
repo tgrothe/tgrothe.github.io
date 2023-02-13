@@ -6,50 +6,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Website</title>
   <style>
-    table,
-    th,
-    td {
+    #table_a th,
+    #table_a td {
       border: 1px solid black;
       border-collapse: collapse;
     }
   </style>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 </head>
 <body>
   <main>
     <h1>Welcome to My Website</h1>
-    <h2>Simple percentage calculator:</h2>
-    <table>
-      <tr>
-        <td style="width: 175px;"><label for="v1">Start value:</label></td>
-        <td colspan="3"><input type="number" value="100.0" name="v1" onchange="calc1()"></td>
-      </tr>
-      <tr>
-        <td><label for="v2">Percent (0 to 100):</label></td>
-        <td colspan="3"><input type="number" value="0.0" name="v2" onchange="calc1()"></td>
-      </tr>
-      <tr>
-        <td><label for="v3">Percent (0 to 100):</label></td>
-        <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="0" name="v3" onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
-      </tr>
-      <tr>
-        <td><label>Percent:</label></td>
-        <td>±</td>
-        <td id="r1"></td>
-        <td>%</td>
-      </tr>
-      <tr>
-        <td><label>Values:</label></td>
-        <td colspan="3" id="r2"></td>
-      </tr>
-      <tr>
-        <td><label>Upper:</label></td>
-        <td colspan="3" id="r3"></td>
-      </tr>
-      <tr>
-        <td><label>Lower:</label></td>
-        <td colspan="3" id="r4"></td>
-      </tr>
-    </table>
+    <div>
+      <h2>Simple percentage calculator:</h2>
+      <table id="table_a">
+        <tr>
+          <td style="width: 175px;"><label for="v1">Start value:</label></td>
+          <td colspan="3"><input type="number" value="100.0" name="v1" onchange="calc1()"></td>
+        </tr>
+        <tr>
+          <td><label for="v2">Percent (0 to 100):</label></td>
+          <td colspan="3"><input type="number" value="0.0" name="v2" onchange="calc1()"></td>
+        </tr>
+        <tr>
+          <td><label for="v3">Percent (0 to 100):</label></td>
+          <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="0" name="v3" onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
+        </tr>
+        <tr>
+          <td><label>Percent:</label></td>
+          <td>±</td>
+          <td id="r1"></td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td><label>Values:</label></td>
+          <td colspan="3" id="r2"></td>
+        </tr>
+        <tr>
+          <td><label>Upper:</label></td>
+          <td colspan="3" id="r3"></td>
+        </tr>
+        <tr>
+          <td><label>Lower:</label></td>
+          <td colspan="3" id="r4"></td>
+        </tr>
+      </table>
+    </div>
+    <hr>
+    <div>
+      <h2>Test table:</h2>
+      <p><label for="v4">Value for c:</label> <input type="number" value="0.5" name="v4" onchange="calc2()"></p>
+      <table id="table_b" class="hover" style="width:100%">
+        <thead>
+          <tr>
+            <th>Nr</th>
+            <th>a</th>
+            <th>b</th>
+            <th>c</th>
+            <th>Result 1</th>
+            <th>Result 2</th>
+          </tr>
+        </thead>
+        <tbody id="tb_b"></tbody>
+      </table>
+    </div>
   </main>
   <script>
     function calc1() {
@@ -64,6 +86,49 @@
       document.getElementById("r4").innerText = v5;
     }
     calc1();
+    (function () {
+      let tableData = [];
+
+      for (let i = 0; i < 20; i++) {
+        let a = 0.0005 * i;
+        let b = 0.0025;
+        let c = 0.5;
+        let r1 = (a / b - 1.0) * c + 1.0;
+        let r2 = 1.0 - (a / b - 1.0) * c;
+        tableData.push([a, b, c, r1, r2]);
+      }
+
+      let tb = document.getElementById("tb_b");
+      while (tb.rows.length > 0) {
+        tb.deleteRow(-1);
+      }
+      for (let i = 0; i < tableData.length; i++) {
+        let r = tb.insertRow(-1);
+        r.insertCell(-1).innerHTML = i + 1;
+        for (let j = 0; j < tableData[i].length; j++) {
+          let c = r.insertCell(-1);
+          c.innerHTML = tableData[i][j];
+        }
+      }
+
+      $("#table_b").DataTable({
+        "lengthMenu": [[10, 25, -1], [10, 25, "All"]],
+        "pageLength": 25
+      });
+    })();
+    function calc2() {
+      $("#table_b").dataTable().api().clear();
+
+      const v4 = parseFloat(document.getElementsByName("v4")[0].value);
+      for (let i = 0; i < 20; i++) {
+        let a = 0.0005 * i;
+        let b = 0.0025;
+        let c = v4;
+        let r1 = (a / b - 1.0) * c + 1.0;
+        let r2 = 1.0 - (a / b - 1.0) * c;
+        $("#table_b").dataTable().api().row.add([i + 1, a, b, c, r1, r2]).draw();
+      }
+    }
   </script>
 </body>
 </html>
