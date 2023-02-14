@@ -1,8 +1,6 @@
 name: Auto Create PR
 on:
   push:
-    branches:
-      - main
 jobs:
   createPr:
     runs-on: ubuntu-latest
