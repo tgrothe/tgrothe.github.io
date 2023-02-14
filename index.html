@@ -182,28 +182,28 @@
         let rows = document.getElementById("ta1").value.split("\n");
         let s = "[\n";
         for (let i = 0; i < rows.length; i++) {
-          let r = rows[i];
-          if (r.startsWith('"')) {
-            r = r.substring(1, r.length - 1);
+          let row = rows[i];
+          if (row.startsWith('"')) {
+            row = row.substring(1, row.length - 1);
           }
-          s += await preloadImages(r);
+          s += await preloadImage(row);
         }
         s += "];";
         document.getElementById("ta1").value = s;
       }
 
-      async function preloadImages(r) {
+      async function preloadImage(imgSrc) {
         let img = new Image();
         try {
           await new Promise((resolve, reject) => {
             img.onload = () => resolve(img);
             img.onerror = reject;
-            img.src = r;
+            img.src = imgSrc;
           });
         } catch (error) {
-          return '  [ "' + r + '", ' + -1 + ", " + -1 + " ],\n";
+          return '  [ "' + imgSrc + '", ' + -1 + ", " + -1 + " ],\n";
         }
-        return '  [ "' + r + '", ' + img.width + ", " + img.height + " ],\n";
+        return '  [ "' + imgSrc + '", ' + img.width + ", " + img.height + " ],\n";
       }
   </script>
 </body>
