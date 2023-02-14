@@ -70,8 +70,8 @@
     <div>
       <h3>Annuitätendarlehen-Rechner:</h3>
       <p>Legende: <code>A=Annuität, K=Darlehnsbetrag, p=Zinssatz, q=1+p, n=Darlehnslaufzeit</code>.</p>
-      <p>Werte für K, p und n: <input type="text" value="[1000, 0.07, 3]" name="vDarlehn" onchange="calc3()"></p>
-      <p>Ergebnis: <code id="eDarlehn"></code> (Summe: <code id="eDarlehn2"></code>)</p>
+      <p>Werte für [K, p, n]: <input type="text" value="[1000, 0.07, 3]" name="vDarlehn" onchange="calc3()">.</p>
+      <p>Annuität: <code id="eDarlehn"></code> (Summe: <code id="eDarlehn2"></code>).</p>
     </div>
     <hr>
     <div>
@@ -195,8 +195,8 @@
         const n = json[2];
         const a = ((p * Math.pow(q, n)) / (Math.pow(q, n) - 1.0)) * k;
         const a2 = a * n;
-        document.getElementById("eDarlehn").innerText = a;
-        document.getElementById("eDarlehn2").innerText = a2;
+        document.getElementById("eDarlehn").innerText = Number(a).toFixed(2);
+        document.getElementById("eDarlehn2").innerText = Number(a2).toFixed(2);
       }
 
       calc3();
