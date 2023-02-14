@@ -85,6 +85,11 @@
         <tbody id="tb_b"></tbody>
       </table>
     </div>
+    <hr>
+    <div>
+      <h3>Image width and height calculator:</h3>
+      <textarea id="ta1" rows="12" cols="100">One image URL per line...</textarea> <button onclick="convert()">Convert</button>
+    </div>
   </main>
   <script>
     function calc1() {
@@ -104,8 +109,11 @@
       document.getElementById("r5").innerText = v6 + ", " + v7;
       document.getElementById("r6").innerText = v8 + ", " + v9;
     }
+
     calc1();
+
     const numberOfRows = 40;
+
     (function () {
       let tableData = [];
 
@@ -141,6 +149,7 @@
         "pageLength": 25
       });
     })();
+
     function calc2() {
       $("#table_b").dataTable().api().clear();
 
@@ -160,6 +169,34 @@
       } catch (error) {
         alert("The input values are not valid.");
       }
+    }
+
+    async function convert() {
+      let rows = document.getElementById("ta1").value.split("\n");
+      let s = "[\n";
+      for (let i = 0; i < rows.length; i++) {
+        let r = rows[i];
+        if (r.startsWith('"')) {
+          r = r.substring(1, r.length - 1);
+        }
+        s += await preloadImages(r);
+      }
+      s += "];"
+      document.getElementById("ta1").value = s;
+    }
+
+    async function preloadImages(r) {
+      let img = new Image();
+      try {
+        await new Promise((resolve, reject) => {
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.src = r;
+        });
+      } catch (error) {
+        return '  [ "' + r + '", ' + -1 + ", " + -1 + " ],\n";
+      }
+      return '  [ "' + r + '", ' + img.width + ", " + img.height + " ],\n";
     }
   </script>
 </body>
