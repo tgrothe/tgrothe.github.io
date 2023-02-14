@@ -1,6 +1,7 @@
 name: Auto Create PR
 on:
-  push:
+  schedule:
+    - cron:  '*/5 * * * *'
 jobs:
   createPr:
     runs-on: ubuntu-latest
