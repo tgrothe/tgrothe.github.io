@@ -11,6 +11,9 @@
       border: 1px solid black;
       border-collapse: collapse;
     }
+    code {
+      background-color: darkgray;
+    }
   </style>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
   <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -18,9 +21,9 @@
 </head>
 <body>
   <main>
-    <h1>Welcome to My Website</h1>
+    <h2>Welcome to My Website</h2>
     <div>
-      <h2>Simple percentage calculator:</h2>
+      <h3>Simple percentage calculator:</h3>
       <table id="table_a">
         <tr>
           <td style="width: 175px;"><label>Start value:</label></td>
@@ -56,9 +59,9 @@
     </div>
     <hr>
     <div>
-      <h2>Test table:</h2>
-      <p>Calculates: <code>(a / b - 1.0) * c + 1.0</code> for Result 1 and <code>1.0 - (a / b - 1.0) * c</code> for Result 2. 40 lines are shown.</p>
-      <p><label>Value for c:</label> <input type="number" value="0.5" name="v4" onchange="calc2()"></p>
+      <h3>Test table:</h3>
+      <p>Calculates: <code>( (a*i) / b - 1.0) * c + 1.0</code> for Result 1 and <code>1.0 - ( (a*i) / b - 1.0) * c</code> for Result 2. 40 lines are shown.</p>
+      <p><label>Values for [a, b, c]:</label> <input type="text" value="[0.05, 0.4, 0.25]" name="v4" onchange="calc2()"></p>
       <table id="table_b" class="hover" style="width:100%">
         <thead>
           <tr>
@@ -91,10 +94,11 @@
     (function () {
       let tableData = [];
 
+      const json = JSON.parse(document.getElementsByName("v4")[0].value);
       for (let i = 0; i < numberOfRows; i++) {
-        let a = 0.0005 * i;
-        let b = 0.0025;
-        let c = 0.5;
+        let a = json[0] * i;
+        let b = json[1];
+        let c = json[2];
         let r1 = (a / b - 1.0) * c + 1.0;
         let r2 = 1.0 - (a / b - 1.0) * c;
         tableData.push([a, b, c, r1, r2]);
@@ -118,11 +122,11 @@
     function calc2() {
       $("#table_b").dataTable().api().clear();
 
-      const v4 = parseFloat(document.getElementsByName("v4")[0].value);
+      const json = JSON.parse(document.getElementsByName("v4")[0].value);
       for (let i = 0; i < numberOfRows; i++) {
-        let a = 0.0005 * i;
-        let b = 0.0025;
-        let c = v4;
+        let a = json[0] * i;
+        let b = json[1];
+        let c = json[2];
         let r1 = (a / b - 1.0) * c + 1.0;
         let r2 = 1.0 - (a / b - 1.0) * c;
         $("#table_b").dataTable().api().row.add([i + 1, a, b, c, r1, r2]).draw();
