@@ -32,7 +32,8 @@ jobs:
           ref: ${{ github.head_ref }}
       - name: Cache packages
         uses: actions/cache@v3
-        id: cache-packages
+        with:
+          key: ${{ runner.os }}-
       - name: Tidy code
         run: |
           sudo apt install tidy
