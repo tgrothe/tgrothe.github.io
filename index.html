@@ -28,15 +28,15 @@
       <table id="table_a">
         <tr>
           <td style="width: 175px;"><label>Start value:</label></td>
-          <td colspan="3"><input type="number" value="100.0" name="v1" onchange="calc1()"></td>
+          <td colspan="3"><input type="number" value="175.0" name="v1" onchange="calc1()"></td>
         </tr>
         <tr>
           <td><label>Percent (0 to 100):</label></td>
-          <td colspan="3"><input type="number" value="0.0" name="v2" onchange="calc1()"></td>
+          <td colspan="3"><input type="number" value="15.0" name="v2" onchange="calc1()"></td>
         </tr>
         <tr>
           <td><label>Percent (0 to 100):</label></td>
-          <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="0" name="v3" onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
+          <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="15" name="v3" onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
         </tr>
         <tr>
           <td><label>Percent:</label></td>
@@ -55,6 +55,14 @@
         <tr>
           <td><label>Lower:</label></td>
           <td colspan="3" id="r4"></td>
+        </tr>
+        <tr>
+          <td><label>Reverse percentage:</label></td>
+          <td colspan="3" id="r5"></td>
+        </tr>
+        <tr>
+          <td><label>Reverse percentage f:</label></td>
+          <td colspan="3" id="r6"></td>
         </tr>
       </table>
     </div>
@@ -85,10 +93,16 @@
       let v3 = v2 / 100.0 * v1;
       let v4 = v1 + v3;
       let v5 = v1 - v3;
+      let v6 = Number((v1 / v4 - 1.0) * 100.0).toFixed(3);
+      let v7 = Number((v1 / v5 - 1.0) * 100.0).toFixed(3);
+      let v8 = Number(v1 / v4 * 100.0).toFixed(3);
+      let v9 = Number(v1 / v5 * 100.0).toFixed(3);
       document.getElementById("r1").innerText = v2;
       document.getElementById("r2").innerText = v1 + ", " + v2 + ", " + v3;
       document.getElementById("r3").innerText = v4;
       document.getElementById("r4").innerText = v5;
+      document.getElementById("r5").innerText = v6 + ", " + v7;
+      document.getElementById("r6").innerText = v8 + ", " + v9;
     }
     calc1();
     const numberOfRows = 40;
