@@ -109,14 +109,21 @@
     (function () {
       let tableData = [];
 
-      const json = JSON.parse(document.getElementsByName("v4")[0].value);
-      for (let i = 0; i < numberOfRows; i++) {
-        let a = json[0] * i;
-        let b = json[1];
-        let c = json[2];
-        let r1 = (a / b - 1.0) * c + 1.0;
-        let r2 = 1.0 - (a / b - 1.0) * c;
-        tableData.push([a, b, c, r1, r2]);
+      try {
+        const json = JSON.parse(document.getElementsByName("v4")[0].value);
+        if (json.length != 3) {
+          throw new Error();
+        }
+        for (let i = 0; i < numberOfRows; i++) {
+          let a = json[0] * i;
+          let b = json[1];
+          let c = json[2];
+          let r1 = (a / b - 1.0) * c + 1.0;
+          let r2 = 1.0 - (a / b - 1.0) * c;
+          tableData.push([a, b, c, r1, r2]);
+        }
+      } catch (error) {
+        alert("The input values are not valid.");
       }
 
       let tb = document.getElementById("tb_b");
@@ -137,14 +144,21 @@
     function calc2() {
       $("#table_b").dataTable().api().clear();
 
-      const json = JSON.parse(document.getElementsByName("v4")[0].value);
-      for (let i = 0; i < numberOfRows; i++) {
-        let a = json[0] * i;
-        let b = json[1];
-        let c = json[2];
-        let r1 = (a / b - 1.0) * c + 1.0;
-        let r2 = 1.0 - (a / b - 1.0) * c;
-        $("#table_b").dataTable().api().row.add([i + 1, a, b, c, r1, r2]).draw();
+      try {
+        const json = JSON.parse(document.getElementsByName("v4")[0].value);
+        if (json.length != 3) {
+          throw new Error();
+        }
+        for (let i = 0; i < numberOfRows; i++) {
+          let a = json[0] * i;
+          let b = json[1];
+          let c = json[2];
+          let r1 = (a / b - 1.0) * c + 1.0;
+          let r2 = 1.0 - (a / b - 1.0) * c;
+          $("#table_b").dataTable().api().row.add([i + 1, a, b, c, r1, r2]).draw();
+        }
+      } catch (error) {
+        alert("The input values are not valid.");
       }
     }
   </script>
