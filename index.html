@@ -1,241 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta
+      name="generator"
+      content="HTML Tidy for HTML5 for Linux version 5.6.0"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <style>
+      #table_a th,
+      #table_a td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
 
-<head>
-  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
-  <style>
-    #table_a th,
-    #table_a td {
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
+      code {
+        background-color: darkgray;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+  </head>
 
-    code {
-      background-color: darkgray;
-    }
-  </style>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
-</head>
-
-<body>
-  <main>
-    <h2>Welcome to My Website</h2>
-    <div>
-      <h3>Simple percentage calculator:</h3>
-      <table id="table_a">
-        <tr>
-          <td style="width: 175px"><label>Start value:</label></td>
-          <td colspan="3"><input type="number" value="175.0" name="v1" onchange="calc1()"></td>
-        </tr>
-        <tr>
-          <td><label>Percent (0 to 100):</label></td>
-          <td colspan="3"><input type="number" value="15.0" name="v2" onchange="calc1()"></td>
-        </tr>
-        <tr>
-          <td><label>Percent (0 to 100):</label></td>
-          <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="15" name="v3"
-              onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
-        </tr>
-        <tr>
-          <td><label>Percent:</label></td>
-          <td>±</td>
-          <td id="r1"></td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td><label>Values:</label></td>
-          <td colspan="3" id="r2"></td>
-        </tr>
-        <tr>
-          <td><label>Upper:</label></td>
-          <td colspan="3" id="r3"></td>
-        </tr>
-        <tr>
-          <td><label>Lower:</label></td>
-          <td colspan="3" id="r4"></td>
-        </tr>
-        <tr>
-          <td><label>Reverse percentage:</label></td>
-          <td colspan="3" id="r5"></td>
-        </tr>
-        <tr>
-          <td><label>Reverse percentage f:</label></td>
-          <td colspan="3" id="r6"></td>
-        </tr>
-      </table>
-    </div>
-    <hr>
-    <div>
-      <h3>Annuitätendarlehen-Rechner:</h3>
-      <p>Legende: <code>A=Annuität, K=Darlehnsbetrag, p=Zinssatz, q=1+p, n=Darlehnslaufzeit</code>.</p>
-      <p>Werte für K, p und n: <input type="text" value="[1000, 0.07, 3]" name="vDarlehn" onchange="calc3()"></p>
-      <p>Ergebnis: <code id="eDarlehn"></code> (Summe: <code id="eDarlehn2"></code>)</p>
-    </div>
-    <hr>
-    <div>
-      <h3>Test table:</h3>
-      <p>Calculates: <code>( (a*i) / b - 1.0) * c + 1.0</code> for Result 1 and
-        <code>1.0 - ( (a*i) / b - 1.0) * c</code> for Result 2. 40 lines are shown.</p>
-      <p><label>Values for [a, b, c]:</label> <input type="text" value="[0.05, 0.4, 0.25]" name="v4" onchange="calc2()">
-      </p>
-      <table id="table_b" class="hover" style="width: 100%">
-        <thead>
+  <body>
+    <main>
+      <h2>Welcome to My Website</h2>
+      <div>
+        <h3>Simple percentage calculator:</h3>
+        <table id="table_a">
           <tr>
-            <th>Nr</th>
-            <th>a</th>
-            <th>b</th>
-            <th>c</th>
-            <th>Result 1</th>
-            <th>Result 2</th>
+            <td style="width: 175px"><label>Start value:</label></td>
+            <td colspan="3">
+              <input type="number" value="175.0" name="v1" onchange="calc1()" />
+            </td>
           </tr>
-        </thead>
-        <tbody id="tb_b"></tbody>
-      </table>
-    </div>
-    <hr>
-    <div>
-      <h3>Image width and height calculator:</h3>
-      <textarea id="ta1" rows="12" cols="100">One image URL per line...</textarea> <button
-        onclick="convert()">Convert</button>
-    </div>
-  </main>
-  <script>
-    function calc1() {
-      let v1 = parseFloat(document.getElementsByName("v1")[0].value);
-      let v2 = parseFloat(document.getElementsByName("v2")[0].value);
-      let v3 = (v2 / 100.0) * v1;
-      let v4 = v1 + v3;
-      let v5 = v1 - v3;
-      let v6 = Number((v1 / v4 - 1.0) * 100.0).toFixed(3);
-      let v7 = Number((v1 / v5 - 1.0) * 100.0).toFixed(3);
-      let v8 = Number((v1 / v4) * 100.0).toFixed(3);
-      let v9 = Number((v1 / v5) * 100.0).toFixed(3);
-      document.getElementById("r1").innerText = v2;
-      document.getElementById("r2").innerText = v1 + ", " + v2 + ", " + v3;
-      document.getElementById("r3").innerText = v4;
-      document.getElementById("r4").innerText = v5;
-      document.getElementById("r5").innerText = v6 + ", " + v7;
-      document.getElementById("r6").innerText = v8 + ", " + v9;
-    }
-
-    calc1();
-
-    const numberOfRows = 40;
-
-    (function () {
-      let tableData = [];
-
-      try {
-        const json = JSON.parse(document.getElementsByName("v4")[0].value);
-        if (json.length != 3) {
-          throw new Error();
-        }
-        for (let i = 0; i < numberOfRows; i++) {
-          let a = json[0] * i;
-          let b = json[1];
-          let c = json[2];
-          let r1 = (a / b - 1.0) * c + 1.0;
-          let r2 = 1.0 - (a / b - 1.0) * c;
-          tableData.push([a, b, c, r1, r2]);
-        }
-      } catch (error) {
-        alert("The input values are not valid.");
+          <tr>
+            <td><label>Percent (0 to 100):</label></td>
+            <td colspan="3">
+              <input type="number" value="15.0" name="v2" onchange="calc1()" />
+            </td>
+          </tr>
+          <tr>
+            <td><label>Percent (0 to 100):</label></td>
+            <td colspan="3">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                step="5.0"
+                value="15"
+                name="v3"
+                onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><label>Percent:</label></td>
+            <td>±</td>
+            <td id="r1"></td>
+            <td>%</td>
+          </tr>
+          <tr>
+            <td><label>Values:</label></td>
+            <td colspan="3" id="r2"></td>
+          </tr>
+          <tr>
+            <td><label>Upper:</label></td>
+            <td colspan="3" id="r3"></td>
+          </tr>
+          <tr>
+            <td><label>Lower:</label></td>
+            <td colspan="3" id="r4"></td>
+          </tr>
+          <tr>
+            <td><label>Reverse percentage:</label></td>
+            <td colspan="3" id="r5"></td>
+          </tr>
+          <tr>
+            <td><label>Reverse percentage f:</label></td>
+            <td colspan="3" id="r6"></td>
+          </tr>
+        </table>
+      </div>
+      <hr />
+      <div>
+        <h3>Annuitätendarlehen-Rechner:</h3>
+        <p>
+          Legende:
+          <code
+            >A=Annuität, K=Darlehnsbetrag, p=Zinssatz, q=1+p,
+            n=Darlehnslaufzeit</code
+          >.
+        </p>
+        <p>
+          Werte für K, p und n:
+          <input
+            type="text"
+            value="[1000, 0.07, 3]"
+            name="vDarlehn"
+            onchange="calc3()"
+          />
+        </p>
+        <p>
+          Ergebnis: <code id="eDarlehn"></code> (Summe:
+          <code id="eDarlehn2"></code>)
+        </p>
+      </div>
+      <hr />
+      <div>
+        <h3>Test table:</h3>
+        <p>
+          Calculates: <code>( (a*i) / b - 1.0) * c + 1.0</code> for Result 1 and
+          <code>1.0 - ( (a*i) / b - 1.0) * c</code> for Result 2. 40 lines are
+          shown.
+        </p>
+        <p>
+          <label>Values for [a, b, c]:</label>
+          <input
+            type="text"
+            value="[0.05, 0.4, 0.25]"
+            name="v4"
+            onchange="calc2()"
+          />
+        </p>
+        <table id="table_b" class="hover" style="width: 100%">
+          <thead>
+            <tr>
+              <th>Nr</th>
+              <th>a</th>
+              <th>b</th>
+              <th>c</th>
+              <th>Result 1</th>
+              <th>Result 2</th>
+            </tr>
+          </thead>
+          <tbody id="tb_b"></tbody>
+        </table>
+      </div>
+      <hr />
+      <div>
+        <h3>Image width and height calculator:</h3>
+        <textarea id="ta1" rows="12" cols="100">
+One image URL per line...</textarea
+        >
+        <button onclick="convert()">Convert</button>
+      </div>
+    </main>
+    <script>
+      function calc1() {
+        let v1 = parseFloat(document.getElementsByName("v1")[0].value);
+        let v2 = parseFloat(document.getElementsByName("v2")[0].value);
+        let v3 = (v2 / 100.0) * v1;
+        let v4 = v1 + v3;
+        let v5 = v1 - v3;
+        let v6 = Number((v1 / v4 - 1.0) * 100.0).toFixed(3);
+        let v7 = Number((v1 / v5 - 1.0) * 100.0).toFixed(3);
+        let v8 = Number((v1 / v4) * 100.0).toFixed(3);
+        let v9 = Number((v1 / v5) * 100.0).toFixed(3);
+        document.getElementById("r1").innerText = v2;
+        document.getElementById("r2").innerText = v1 + ", " + v2 + ", " + v3;
+        document.getElementById("r3").innerText = v4;
+        document.getElementById("r4").innerText = v5;
+        document.getElementById("r5").innerText = v6 + ", " + v7;
+        document.getElementById("r6").innerText = v8 + ", " + v9;
       }
 
-      let tb = document.getElementById("tb_b");
-      for (let i = 0; i < tableData.length; i++) {
-        let r = tb.insertRow(-1);
-        r.insertCell(-1).innerHTML = i + 1;
-        for (let j = 0; j < tableData[i].length; j++) {
-          let c = r.insertCell(-1);
-          c.innerHTML = tableData[i][j];
+      calc1();
+
+      const numberOfRows = 40;
+
+      (function () {
+        let tableData = [];
+
+        try {
+          const json = JSON.parse(document.getElementsByName("v4")[0].value);
+          if (json.length != 3) {
+            throw new Error();
+          }
+          for (let i = 0; i < numberOfRows; i++) {
+            let a = json[0] * i;
+            let b = json[1];
+            let c = json[2];
+            let r1 = (a / b - 1.0) * c + 1.0;
+            let r2 = 1.0 - (a / b - 1.0) * c;
+            tableData.push([a, b, c, r1, r2]);
+          }
+        } catch (error) {
+          alert("The input values are not valid.");
         }
-      }
 
-      $("#table_b").DataTable({
-        lengthMenu: [
-          [10, 25, -1],
-          [10, 25, "All"],
-        ],
-        pageLength: 25,
-      });
-    })();
-
-    function calc2() {
-      $("#table_b").dataTable().api().clear();
-
-      try {
-        const json = JSON.parse(document.getElementsByName("v4")[0].value);
-        if (json.length != 3) {
-          throw new Error();
+        let tb = document.getElementById("tb_b");
+        for (let i = 0; i < tableData.length; i++) {
+          let r = tb.insertRow(-1);
+          r.insertCell(-1).innerHTML = i + 1;
+          for (let j = 0; j < tableData[i].length; j++) {
+            let c = r.insertCell(-1);
+            c.innerHTML = tableData[i][j];
+          }
         }
-        for (let i = 0; i < numberOfRows; i++) {
-          let a = json[0] * i;
-          let b = json[1];
-          let c = json[2];
-          let r1 = (a / b - 1.0) * c + 1.0;
-          let r2 = 1.0 - (a / b - 1.0) * c;
-          $("#table_b")
-            .dataTable()
-            .api()
-            .row.add([i + 1, a, b, c, r1, r2])
-            .draw();
-        }
-      } catch (error) {
-        alert("The input values are not valid.");
-      }
-    }
 
-    function calc3() {
-      const json = JSON.parse(document.getElementsByName("vDarlehn")[0].value);
-      const k = json[0];
-      const p = json[1];
-      const q = 1.0 + p;
-      const n = json[2];
-      const a = (p * Math.pow(q, n)) / (Math.pow(q, n) - 1.0) * k;
-      const a2 = a * n;
-      document.getElementById("eDarlehn").innerText = a;
-      document.getElementById("eDarlehn2").innerText = a2;
-    }
-
-    calc3();
-
-    async function convert() {
-      let rows = document.getElementById("ta1").value.split("\n");
-      let s = "[\n";
-      for (let i = 0; i < rows.length; i++) {
-        let row = rows[i];
-        if (row.startsWith('"')) {
-          row = row.substring(1, row.length - 1);
-        }
-        s += await preloadImage(row);
-      }
-      s += "];";
-      document.getElementById("ta1").value = s;
-    }
-
-    async function preloadImage(imgSrc) {
-      let img = new Image();
-      try {
-        await new Promise((resolve, reject) => {
-          img.onload = () => resolve(img);
-          img.onerror = reject;
-          img.src = imgSrc;
+        $("#table_b").DataTable({
+          lengthMenu: [
+            [10, 25, -1],
+            [10, 25, "All"],
+          ],
+          pageLength: 25,
         });
-      } catch (error) {
-        return '  [ "' + imgSrc + '", ' + -1 + ", " + -1 + " ],\n";
-      }
-      return (
-        '  [ "' + imgSrc + '", ' + img.width + ", " + img.height + " ],\n"
-      );
-    }
-  </script>
-</body>
+      })();
 
+      function calc2() {
+        $("#table_b").dataTable().api().clear();
+
+        try {
+          const json = JSON.parse(document.getElementsByName("v4")[0].value);
+          if (json.length != 3) {
+            throw new Error();
+          }
+          for (let i = 0; i < numberOfRows; i++) {
+            let a = json[0] * i;
+            let b = json[1];
+            let c = json[2];
+            let r1 = (a / b - 1.0) * c + 1.0;
+            let r2 = 1.0 - (a / b - 1.0) * c;
+            $("#table_b")
+              .dataTable()
+              .api()
+              .row.add([i + 1, a, b, c, r1, r2])
+              .draw();
+          }
+        } catch (error) {
+          alert("The input values are not valid.");
+        }
+      }
+
+      function calc3() {
+        const json = JSON.parse(
+          document.getElementsByName("vDarlehn")[0].value
+        );
+        const k = json[0];
+        const p = json[1];
+        const q = 1.0 + p;
+        const n = json[2];
+        const a = ((p * Math.pow(q, n)) / (Math.pow(q, n) - 1.0)) * k;
+        const a2 = a * n;
+        document.getElementById("eDarlehn").innerText = a;
+        document.getElementById("eDarlehn2").innerText = a2;
+      }
+
+      calc3();
+
+      async function convert() {
+        let rows = document.getElementById("ta1").value.split("\n");
+        let s = "[\n";
+        for (let i = 0; i < rows.length; i++) {
+          let row = rows[i];
+          if (row.startsWith('"')) {
+            row = row.substring(1, row.length - 1);
+          }
+          s += await preloadImage(row);
+        }
+        s += "];";
+        document.getElementById("ta1").value = s;
+      }
+
+      async function preloadImage(imgSrc) {
+        let img = new Image();
+        try {
+          await new Promise((resolve, reject) => {
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+            img.src = imgSrc;
+          });
+        } catch (error) {
+          return '  [ "' + imgSrc + '", ' + -1 + ", " + -1 + " ],\n";
+        }
+        return (
+          '  [ "' + imgSrc + '", ' + img.width + ", " + img.height + " ],\n"
+        );
+      }
+    </script>
+  </body>
 </html>
