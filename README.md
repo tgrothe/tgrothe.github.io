@@ -1,4 +1,4 @@
-[![HTML Tidy](https://github.com/tgrothe/tgrothe.github.io/actions/workflows/html-tidy.yml/badge.svg?event=create)](https://github.com/tgrothe/tgrothe.github.io/actions/workflows/html-tidy.yml)
+[![HTML Tidy](https://github.com/tgrothe/tgrothe.github.io/actions/workflows/html-tidy.yml/badge.svg?event=push)](https://github.com/tgrothe/tgrothe.github.io/actions/workflows/html-tidy.yml)
 &ensp;
 [![pages-build-deployment](https://github.com/tgrothe/tgrothe.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/tgrothe/tgrothe.github.io/actions/workflows/pages/pages-build-deployment)
 
