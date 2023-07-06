@@ -1,7 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0" />
+    <meta
+      name="generator"
+      content="HTML Tidy for HTML5 for Linux version 5.6.0"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Website</title>
@@ -42,8 +45,16 @@
         border: none;
       }
     </style>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css" />
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
   </head>
   <body>
@@ -54,11 +65,15 @@
         <table id="table_a">
           <tr>
             <td style="width: 175px"><label>Start value:</label></td>
-            <td colspan="3"><input type="number" value="175.0" name="v1" onchange="calc1()" /></td>
+            <td colspan="3">
+              <input type="number" value="175.0" name="v1" onchange="calc1()" />
+            </td>
           </tr>
           <tr>
             <td><label>Percent (0 to 100):</label></td>
-            <td colspan="3"><input type="number" value="15.0" name="v2" onchange="calc1()" /></td>
+            <td colspan="3">
+              <input type="number" value="15.0" name="v2" onchange="calc1()" />
+            </td>
           </tr>
           <tr>
             <td><label>Percent (0 to 100):</label></td>
@@ -105,18 +120,44 @@
       <hr />
       <div>
         <h3>Annuitätendarlehen-Rechner:</h3>
-        <p>Legende: <code>A=Annuität, K=Darlehnsbetrag, p=Zinssatz, q=1+p, n=Darlehnslaufzeit</code>.</p>
-        <p>Werte für [K, p, n]: <input type="text" value="[1000, 0.07, 3]" name="vDarlehn" onchange="calc3()" />.</p>
-        <p>Annuität: <code id="eDarlehn"></code> (Summe: <code id="eDarlehn2"></code>).</p>
+        <p>
+          Legende:
+          <code
+            >A=Annuität, K=Darlehnsbetrag, p=Zinssatz, q=1+p,
+            n=Darlehnslaufzeit</code
+          >.
+        </p>
+        <p>
+          Werte für [K, p, n]:
+          <input
+            type="text"
+            value="[1000, 0.07, 3]"
+            name="vDarlehn"
+            onchange="calc3()"
+          />.
+        </p>
+        <p>
+          Annuität: <code id="eDarlehn"></code> (Summe:
+          <code id="eDarlehn2"></code>).
+        </p>
       </div>
       <hr />
       <div>
         <h3>Test table:</h3>
         <p>
-          Calculates: <code>( (a*i) / b - 1.0) * c + 1.0</code> for Result 1 and <code>1.0 - ( (a*i) / b - 1.0) * c</code> for Result 2. 40 lines are maximal
-          shown.
+          Calculates: <code>( (a*i) / b - 1.0) * c + 1.0</code> for Result 1 and
+          <code>1.0 - ( (a*i) / b - 1.0) * c</code> for Result 2. 40 lines are
+          maximal shown.
         </p>
-        <p><label>Values for [a, b, c]:</label> <input type="text" value="[0.05, 0.4, 0.25]" name="v4" onchange="calc2()" /></p>
+        <p>
+          <label>Values for [a, b, c]:</label>
+          <input
+            type="text"
+            value="[0.05, 0.4, 0.25]"
+            name="v4"
+            onchange="calc2()"
+          />
+        </p>
         <table id="table_b" class="hover" style="width: 100%">
           <thead>
             <tr>
@@ -134,16 +175,23 @@
       <hr />
       <div>
         <h3>Image width and height calculator:</h3>
-        <textarea id="ta1" rows="12" cols="100">One image URL per line...</textarea> <button onclick="convert()">Convert</button>
+        <textarea id="ta1" rows="12" cols="100">
+One image URL per line...</textarea
+        >
+        <button onclick="convert()">Convert</button>
       </div>
       <hr />
       <div>
         <h3>Contact form:</h3>
         <h3>Kontakformular:</h3>
-        <p>EN: If you have any suggestions or just want to write me, please use the contact form below. Please fill out all fields carefully.</p>
         <p>
-          DE: Wenn Sie Anregungen haben oder mir einfach nur schreiben wollen, benutzen Sie bitte das untenstehende Kontaktformular. Bitte fülle alle Felder
-          sorgsam aus.
+          EN: If you have any suggestions or just want to write me, please use
+          the contact form below. Please fill out all fields carefully.
+        </p>
+        <p>
+          DE: Wenn Sie Anregungen haben oder mir einfach nur schreiben wollen,
+          benutzen Sie bitte das untenstehende Kontaktformular. Bitte fülle alle
+          Felder sorgsam aus.
         </p>
         <form id="form">
           <div class="field">
@@ -156,7 +204,12 @@
           </div>
           <div class="field">
             <label for="message">message: / Nachricht:</label>
-            <textarea name="message" id="message" cols="50" rows="10"></textarea>
+            <textarea
+              name="message"
+              id="message"
+              cols="50"
+              rows="10"
+            ></textarea>
           </div>
           <div class="field">
             <label for="reply_to">reply_to: / Antwortadresse (E-Mail):</label>
@@ -166,7 +219,10 @@
           <input type="submit" id="button" value="Send Email" />
         </form>
 
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+        <script
+          type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+        ></script>
 
         <script type="text/javascript">
           emailjs.init("5uTezPfnudoU3FVQg");
@@ -175,25 +231,27 @@
         <script>
           const btn = document.getElementById("button");
 
-          document.getElementById("form").addEventListener("submit", function (event) {
-            event.preventDefault();
+          document
+            .getElementById("form")
+            .addEventListener("submit", function (event) {
+              event.preventDefault();
 
-            btn.value = "Sending...";
+              btn.value = "Sending...";
 
-            const serviceID = "default_service";
-            const templateID = "template_3gt69u1";
+              const serviceID = "default_service";
+              const templateID = "template_3gt69u1";
 
-            emailjs.sendForm(serviceID, templateID, this).then(
-              () => {
-                btn.value = "Send Email";
-                alert("Sent!");
-              },
-              (err) => {
-                btn.value = "Send Email";
-                alert(JSON.stringify(err));
-              }
-            );
-          });
+              emailjs.sendForm(serviceID, templateID, this).then(
+                () => {
+                  btn.value = "Send Email";
+                  alert("Sent!");
+                },
+                (err) => {
+                  btn.value = "Send Email";
+                  alert(JSON.stringify(err));
+                },
+              );
+            });
         </script>
       </div>
     </main>
@@ -290,7 +348,9 @@
 
       function calc3() {
         try {
-          const json = JSON.parse(document.getElementsByName("vDarlehn")[0].value);
+          const json = JSON.parse(
+            document.getElementsByName("vDarlehn")[0].value,
+          );
           const k = json[0];
           const p = json[1];
           const q = 1.0 + p;
@@ -298,7 +358,8 @@
           const a = ((p * Math.pow(q, n)) / (Math.pow(q, n) - 1.0)) * k;
           const a2 = a * n;
           document.getElementById("eDarlehn").innerText = Number(a).toFixed(2);
-          document.getElementById("eDarlehn2").innerText = Number(a2).toFixed(2);
+          document.getElementById("eDarlehn2").innerText =
+            Number(a2).toFixed(2);
         } catch (error) {
           alert("The input values are not valid.");
         }
@@ -331,7 +392,9 @@
         } catch (error) {
           return '  [ "' + imgSrc + '", ' + -1 + ", " + -1 + " ],\n";
         }
-        return '  [ "' + imgSrc + '", ' + img.width + ", " + img.height + " ],\n";
+        return (
+          '  [ "' + imgSrc + '", ' + img.width + ", " + img.height + " ],\n"
+        );
       }
     </script>
   </body>
