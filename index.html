@@ -15,6 +15,32 @@
       code {
         background-color: darkgray;
       }
+
+      .field {
+        margin-bottom: 10px;
+      }
+
+      .field label {
+        display: block;
+        font-size: 12px;
+        color: #777;
+      }
+
+      .field input {
+        display: block;
+        min-width: 250px;
+        line-height: 1.5;
+        font-size: 14px;
+      }
+
+      input[type="submit"] {
+        display: block;
+        padding: 6px 30px;
+        font-size: 14px;
+        background-color: #4460aa;
+        color: #fff;
+        border: none;
+      }
   </style>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
   <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -96,6 +122,59 @@
     <div>
       <h3>Image width and height calculator:</h3>
       <textarea id="ta1" rows="12" cols="100">One image URL per line...</textarea> <button onclick="convert()">Convert</button>
+    </div>
+    <hr>
+    <div>
+      <h3>Contact form:</h3>
+      <h3>Kontakformular:</h3>
+      <p>EN: If you have any suggestions or just want to write me, please use the contact form below. Please fill out all fields carefully.</p>
+      <p>DE: Wenn Sie Anregungen haben oder mir einfach nur schreiben wollen, benutzen Sie bitte das untenstehende Kontaktformular. Bitte fülle alle Felder sorgsam aus.</p>
+      <form id="form" name="form">
+        <div class="field">
+          <label for="from_name">from_name: / Von (Name):</label> <input type="text" name="from_name" id="from_name">
+        </div>
+        <div class="field">
+          <label for="to_name">to_name: / An (Name):</label> <input type="text" name="to_name" id="to_name">
+        </div>
+        <div class="field">
+          <label for="message">message: / Nachricht:</label> 
+          <textarea name="message" id="message" cols="50" rows="10"></textarea>
+        </div>
+        <div class="field">
+          <label for="reply_to">reply_to: / Antwortadresse (E-Mail):</label> <input type="text" name="reply_to" id="reply_to">
+        </div><input type="submit" id="button" value="Send Email">
+      </form>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script> 
+      <script type="text/javascript">
+
+          emailjs.init("5uTezPfnudoU3FVQg");
+      </script> 
+      <script>
+
+          const btn = document.getElementById("button");
+
+          document
+            .getElementById("form")
+            .addEventListener("submit", function (event) {
+              event.preventDefault();
+
+              btn.value = "Sending...";
+
+              const serviceID = "default_service";
+              const templateID = "template_3gt69u1";
+
+              emailjs.sendForm(serviceID, templateID, this).then(
+                () => {
+                  btn.value = "Send Email";
+                  alert("Sent!");
+                },
+                (err) => {
+                  btn.value = "Send Email";
+                  alert(JSON.stringify(err));
+                },
+              );
+            });
+      </script>
     </div>
   </main>
   <script>
@@ -192,7 +271,7 @@
       function calc3() {
         try {
           const json = JSON.parse(
-            document.getElementsByName("vDarlehn")[0].value
+            document.getElementsByName("vDarlehn")[0].value,
           );
           const k = json[0];
           const p = json[1];
