@@ -8,6 +8,6 @@
 
 ### tgrothe.github.io
 
-Example website with html and js code.
+A (valid) example website with HTML and JS code.
 
-[Link to website.](https://tgrothe.github.io/)
+[Link to website](https://tgrothe.github.io/).
