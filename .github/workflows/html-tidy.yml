@@ -37,6 +37,6 @@ jobs:
       - name: Commit files and push changes
         continue-on-error: true
         run: |
-          git config --local user.email "tgrothe@users.noreply.github.com"
-          git config --local user.name "tgrothe"
+          git config --local user.email "tgrothe@hsbi.de"
+          git config --local user.name "Tobias Grothe"
           git commit -a -m "Add changes from html tidy" && git push
