@@ -1,14 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta
-      name="generator"
-      content="HTML Tidy for HTML5 for Linux version 5.6.0"
-    />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Website</title>
-    <style>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <style>
       #table_a th,
       #table_a td {
         border: 1px solid black;
@@ -44,141 +41,92 @@
         color: #fff;
         border: none;
       }
-    </style>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css"
-    />
-    <script
-      src="https://code.jquery.com/jquery-3.6.3.min.js"
-      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
-  </head>
-  <body>
-    <main>
-      <h2>Welcome to My Website</h2>
-      <div>
-        <h3>Simple percentage calculator:</h3>
-        <table id="table_a">
+  </style>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+</head>
+<body>
+  <main>
+    <h2>Welcome to My Website</h2>
+    <div>
+      <h3>Simple percentage calculator:</h3>
+      <table id="table_a">
+        <tr>
+          <td style="width: 175px"><label>Start value:</label></td>
+          <td colspan="3"><input type="number" value="175.0" name="v1" onchange="calc1()"></td>
+        </tr>
+        <tr>
+          <td><label>Percent (0 to 100):</label></td>
+          <td colspan="3"><input type="number" value="15.0" name="v2" onchange="calc1()"></td>
+        </tr>
+        <tr>
+          <td><label>Percent (0 to 100):</label></td>
+          <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="15" name="v3" onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
+        </tr>
+        <tr>
+          <td><label>Percent:</label></td>
+          <td>±</td>
+          <td id="r1"></td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td><label>Values:</label></td>
+          <td colspan="3" id="r2"></td>
+        </tr>
+        <tr>
+          <td><label>Upper:</label></td>
+          <td colspan="3" id="r3"></td>
+        </tr>
+        <tr>
+          <td><label>Lower:</label></td>
+          <td colspan="3" id="r4"></td>
+        </tr>
+        <tr>
+          <td><label>Reverse percentage:</label></td>
+          <td colspan="3" id="r5"></td>
+        </tr>
+        <tr>
+          <td><label>Reverse percentage f:</label></td>
+          <td colspan="3" id="r6"></td>
+        </tr>
+      </table>
+    </div>
+    <hr>
+    <div lang="de">
+      <h3>Annuitätendarlehen-Rechner:</h3>
+      <p>Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>, <code>p=Zinssatz</code>, <code>q=1+p</code>, <code>n=Darlehnslaufzeit</code>.</p>
+      <p>Werte für [K, p, n]: <input type="text" value="[1000, 0.07, 3]" name="vDarlehn" onchange="calc3()">.</p>
+      <p>Annuität: <code id="eDarlehn"></code> (Summe: <code id="eDarlehn2"></code>).</p>
+    </div>
+    <hr>
+    <div style="width: 800px">
+      <h3>Test table:</h3>
+      <p>Calculates <code>y = 10 + 7.6*x - 0.076*x^2</code>. 101 lines are maximal shown.</p>
+      <p><input type="button" onclick="calc2()" value="Recalculate table"></p>
+      <table id="table_b" class="hover">
+        <thead>
           <tr>
-            <td style="width: 175px"><label>Start value:</label></td>
-            <td colspan="3">
-              <input type="number" value="175.0" name="v1" onchange="calc1()" />
-            </td>
+            <th>Nr</th>
+            <th>x</th>
+            <th>y</th>
           </tr>
-          <tr>
-            <td><label>Percent (0 to 100):</label></td>
-            <td colspan="3">
-              <input type="number" value="15.0" name="v2" onchange="calc1()" />
-            </td>
-          </tr>
-          <tr>
-            <td><label>Percent (0 to 100):</label></td>
-            <td colspan="3">
-              <input
-                type="range"
-                min="0"
-                max="100"
-                step="5.0"
-                value="15"
-                name="v3"
-                onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td><label>Percent:</label></td>
-            <td>±</td>
-            <td id="r1"></td>
-            <td>%</td>
-          </tr>
-          <tr>
-            <td><label>Values:</label></td>
-            <td colspan="3" id="r2"></td>
-          </tr>
-          <tr>
-            <td><label>Upper:</label></td>
-            <td colspan="3" id="r3"></td>
-          </tr>
-          <tr>
-            <td><label>Lower:</label></td>
-            <td colspan="3" id="r4"></td>
-          </tr>
-          <tr>
-            <td><label>Reverse percentage:</label></td>
-            <td colspan="3" id="r5"></td>
-          </tr>
-          <tr>
-            <td><label>Reverse percentage f:</label></td>
-            <td colspan="3" id="r6"></td>
-          </tr>
-        </table>
-      </div>
-      <hr />
-      <div lang="de">
-        <h3>Annuitätendarlehen-Rechner:</h3>
-        <p>
-          Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>,
-          <code>p=Zinssatz</code>, <code>q=1+p</code>,
-          <code>n=Darlehnslaufzeit</code>.
-        </p>
-        <p>
-          Werte für [K, p, n]:
-          <input
-            type="text"
-            value="[1000, 0.07, 3]"
-            name="vDarlehn"
-            onchange="calc3()"
-          />.
-        </p>
-        <p>
-          Annuität: <code id="eDarlehn"></code> (Summe:
-          <code id="eDarlehn2"></code>).
-        </p>
-      </div>
-      <hr />
-      <div style="width: 800px">
-        <h3>Test table:</h3>
-        <p>
-          Calculates <code>y = 10 + 7.6*x - 0.076*x^2</code>. 101 lines are
-          maximal shown.
-        </p>
-        <p>
-          <input type="button" onclick="calc2()" value="Recalculate table" />
-        </p>
-        <table id="table_b" class="hover">
-          <thead>
-            <tr>
-              <th>Nr</th>
-              <th>x</th>
-              <th>y</th>
-            </tr>
-          </thead>
-          <tbody id="tb_b"></tbody>
-        </table>
-      </div>
-      <hr />
-      <div>
-        <h3>Image width and height calculator:</h3>
-        <textarea id="ta1" rows="12" cols="100">
-One image URL per line...</textarea
-        >
-        <button onclick="convert()">Convert</button>
-      </div>
-      <hr />
-      <div>
-        <h3>Contact:</h3>
-        <a
-          href="mailto:tgrothe@hsbi.de?subject=Contact%20via%20the%20github%20website"
-          >Email me</a
-        >
-      </div>
-      <hr />
-    </main>
-    <script>
+        </thead>
+        <tbody id="tb_b"></tbody>
+      </table>
+    </div>
+    <hr>
+    <div>
+      <h3>Image width and height calculator:</h3>
+      <textarea id="ta1" rows="12" cols="100">One image URL per line...</textarea> <button onclick="convert()">Convert</button>
+    </div>
+    <hr>
+    <div>
+      <h3>Contact:</h3><a href="mailto:tgrothe@hsbi.de?subject=Contact%20via%20the%20github%20website">Email me</a>
+    </div>
+    <hr>
+  </main>
+  <script>
       function calc1() {
         try {
           let v1 = parseFloat(document.getElementsByName("v1")[0].value);
@@ -279,6 +227,6 @@ One image URL per line...</textarea
           '  [ "' + imgSrc + '", ' + img.width + ", " + img.height + " ],\n"
         );
       }
-    </script>
-  </body>
+  </script>
+</body>
 </html>
