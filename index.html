@@ -13,7 +13,7 @@
       }
 
       code {
-        background-color: darkgray;
+        background-color: yellowgreen;
       }
 
       .field {
@@ -41,15 +41,28 @@
         color: #fff;
         border: none;
       }
+
+      div.child {
+        margin: 10px;
+        border: 1px solid black;
+      }
+
+      .parent {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+      }
   </style>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
   <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 </head>
 <body>
-  <main>
-    <h2>Welcome to My Website</h2>
-    <div>
+  <div class="parent">
+    <div class="child">
+      <h2>Welcome to My Website</h2>
       <h3>Simple percentage calculator:</h3>
       <table id="table_a">
         <tr>
@@ -92,15 +105,13 @@
         </tr>
       </table>
     </div>
-    <hr>
-    <div lang="de">
+    <div lang="de" class="child">
       <h3>Annuitätendarlehen-Rechner:</h3>
       <p>Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>, <code>p=Zinssatz</code>, <code>q=1+p</code>, <code>n=Darlehnslaufzeit</code>.</p>
       <p>Werte für [K, p, n]: <input type="text" value="[1000, 0.07, 3]" name="vDarlehn" onchange="calc3()">.</p>
       <p>Annuität: <code id="eDarlehn"></code> (Summe: <code id="eDarlehn2"></code>).</p>
     </div>
-    <hr>
-    <div style="width: 800px">
+    <div class="child">
       <h3>Test table:</h3>
       <p>Calculates <code>y = 10 + 7.6*x - 0.076*x^2</code>. 101 lines are maximal shown.</p>
       <p><input type="button" onclick="calc2()" value="Recalculate table"></p>
@@ -115,17 +126,15 @@
         <tbody id="tb_b"></tbody>
       </table>
     </div>
-    <hr>
-    <div>
+    <div class="child">
       <h3>Image width and height calculator:</h3>
       <textarea id="ta1" rows="12" cols="100">One image URL per line...</textarea> <button onclick="convert()">Convert</button>
     </div>
-    <hr>
-    <div>
-      <h3>Contact:</h3><a href="mailto:tgrothe@hsbi.de?subject=Contact%20via%20the%20github%20website">Email me</a>
+    <div class="child">
+      <h3>Contact:</h3><a href="mailto:tobias.grothe@gmail.com?subject=Contact%20via%20the%20github%20website">Email me</a>
     </div>
-    <hr>
-  </main>
+    <div class="child"></div>
+  </div>
   <script>
       function calc1() {
         try {
