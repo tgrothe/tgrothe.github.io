@@ -1,7 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0" />
+    <meta
+      name="generator"
+      content="HTML Tidy for HTML5 for Linux version 5.6.0"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Website</title>
@@ -55,8 +58,16 @@
         grid-row-gap: 0px;
       }
     </style>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css" />
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
   </head>
   <body>
@@ -67,11 +78,15 @@
         <table id="table_a">
           <tr>
             <td style="width: 175px"><label>Start value:</label></td>
-            <td colspan="3"><input type="number" value="175.0" name="v1" onchange="calc1()" /></td>
+            <td colspan="3">
+              <input type="number" value="175.0" name="v1" onchange="calc1()" />
+            </td>
           </tr>
           <tr>
             <td><label>Percent (0 to 100):</label></td>
-            <td colspan="3"><input type="number" value="15.0" name="v2" onchange="calc1()" /></td>
+            <td colspan="3">
+              <input type="number" value="15.0" name="v2" onchange="calc1()" />
+            </td>
           </tr>
           <tr>
             <td><label>Percent (0 to 100):</label></td>
@@ -117,14 +132,34 @@
       </div>
       <div lang="de" class="child">
         <h3>Annuitätendarlehen-Rechner:</h3>
-        <p>Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>, <code>p=Zinssatz</code>, <code>q=1+p</code>, <code>n=Darlehnslaufzeit</code>.</p>
-        <p>Werte für [K, p, n]: <input type="text" value="[1000, 0.07, 3]" name="vDarlehn" onchange="calc3()" />.</p>
-        <p>Annuität: <code id="eDarlehn"></code> (Summe: <code id="eDarlehn2"></code>).</p>
+        <p>
+          Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>,
+          <code>p=Zinssatz</code>, <code>q=1+p</code>,
+          <code>n=Darlehnslaufzeit</code>.
+        </p>
+        <p>
+          Werte für [K, p, n]:
+          <input
+            type="text"
+            value="[1000, 0.07, 3]"
+            name="vDarlehn"
+            onchange="calc3()"
+          />.
+        </p>
+        <p>
+          Annuität: <code id="eDarlehn"></code> (Summe:
+          <code id="eDarlehn2"></code>).
+        </p>
       </div>
       <div class="child">
         <h3>Test table:</h3>
-        <p>Calculates <code>y = 10 + 7.6*x - 0.076*x^2</code>. 101 lines are maximal shown.</p>
-        <p><input type="button" onclick="calc2()" value="Recalculate table" /></p>
+        <p>
+          Calculates <code>y = 10 + 7.6*x - 0.076*x^2</code>. 101 lines are
+          maximal shown.
+        </p>
+        <p>
+          <input type="button" onclick="calc2()" value="Recalculate table" />
+        </p>
         <table id="table_b" class="hover">
           <thead>
             <tr>
@@ -138,11 +173,17 @@
       </div>
       <div class="child">
         <h3>Image width and height calculator:</h3>
-        <textarea id="ta1" rows="12" cols="100">One image URL per line...</textarea> <button onclick="convert()">Convert</button>
+        <textarea id="ta1" rows="12" cols="100">
+One image URL per line...</textarea
+        >
+        <button onclick="convert()">Convert</button>
       </div>
       <div class="child">
         <h3>Contact:</h3>
-        <a href="mailto:tobias.grothe@gmail.com?subject=Contact%20via%20the%20github%20website">Email me</a>
+        <a
+          href="mailto:tobias.grothe@gmail.com?subject=Contact%20via%20the%20github%20website"
+          >Email me</a
+        >
       </div>
       <div class="child"></div>
     </div>
@@ -199,7 +240,9 @@
 
       function calc3() {
         try {
-          const json = JSON.parse(document.getElementsByName("vDarlehn")[0].value);
+          const json = JSON.parse(
+            document.getElementsByName("vDarlehn")[0].value,
+          );
           const k = json[0];
           const p = json[1];
           const q = 1.0 + p;
@@ -207,7 +250,8 @@
           const a = ((p * Math.pow(q, n)) / (Math.pow(q, n) - 1.0)) * k;
           const a2 = a * n;
           document.getElementById("eDarlehn").innerText = Number(a).toFixed(2);
-          document.getElementById("eDarlehn2").innerText = Number(a2).toFixed(2);
+          document.getElementById("eDarlehn2").innerText =
+            Number(a2).toFixed(2);
         } catch (error) {
           alert("The input values are not valid.");
         }
@@ -239,7 +283,9 @@
         } catch (error) {
           return '  [ "' + imgSrc + '", ' + -1 + ", " + -1 + " ],\n";
         }
-        return '  [ "' + imgSrc + '", ' + img.width + ", " + img.height + " ],\n";
+        return (
+          '  [ "' + imgSrc + '", ' + img.width + ", " + img.height + " ],\n"
+        );
       }
     </script>
   </body>
