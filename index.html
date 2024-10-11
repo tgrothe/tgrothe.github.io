@@ -128,12 +128,25 @@
     </div>
     <div class="child">
       <h3>Image width and height calculator:</h3>
-      <textarea id="ta1" rows="12" cols="100">One image URL per line...</textarea> <button onclick="convert()">Convert</button>
+      <textarea id="ta1" rows="12" cols="100">One image URL per line...</textarea>
+      <p><button onclick="convert()">Convert</button></p>
     </div>
     <div class="child">
       <h3>Contact:</h3>See <a href="https://github.com/tgrothe">GitHub profile</a>.
     </div>
-    <div class="child"></div>
+    <div lang="de" class="child">
+      <h3>Lineares Gleichungssystem mit Gauß-Jordan-Algorithmus lösen:</h3>
+      <textarea id="ta2" rows="12" cols="100">
+  1, 1, 0, 0, 0, 0, 0, 47
+  0, 1, 1, 0, 0, 0, 0, 39
+  0, 0, 0, 1, 0, 0, 0, 12
+  0, 0, 0, 0, 0, 0, 1, 5
+  -1, 0, 0, 1, 1, 0, 0, 0
+  0, -1, 0, 0, 1, 1, 0, 0
+  0, 0, -1, 0, 0, 1, 1, 0
+      </textarea>
+      <p><button onclick="solve()">Lösen</button></p>
+    </div>
   </div>
   <script>
       function calc1() {
@@ -234,6 +247,120 @@
         return (
           '  [ "' + imgSrc + '", ' + img.width + ", " + img.height + " ],\n"
         );
+      }
+
+      class GaussJordan {
+  constructor(matrix) {
+    this.message = "";
+    this.matrix = matrix;
+    this.rows = matrix.length;
+    this.cols = matrix[0].length;
+
+    for (let i = 0; i < this.rows; i++) {
+      if (this.matrix[i].length !== this.rows + 1) {
+        this.appendMessage("Invalid matrix dimensions");
+        throw "Invalid matrix dimensions";
+      }
+    }
+  }
+
+  appendMessage(message) {
+    this.message += message + "\n";
+  }
+
+  getMessage() {
+    return this.message;
+  }
+
+  print() {
+    for (let i = 0; i < this.rows; i++) {
+      let s = "";
+      for (let j = 0; j < this.cols; j++) {
+        s += Number (this.matrix[i][j]).toFixed(2) + "  ";
+      }
+      this.appendMessage(s);
+    }
+    this.appendMessage("");
+  }
+
+  reduceRow(r1, r2, pos) {
+    if (r1.length != r2.length) {
+      return false;
+    }
+
+    let factor = r2[pos] / r1[pos];
+    for (let i = pos; i < r1.length; i++) {
+      r2[i] -= factor * r1[i];
+    }
+    return true;
+  }
+
+  solve() {
+    let k; // pivot
+    let swapTemp;
+
+    for (let i = 0; i < this.rows; i++) {
+      k = i;
+
+      for (let j = i + 1; j < this.rows; j++) {
+        if (this.matrix[j][i] > this.matrix[k][i]) {
+          k = j;
+        }
+      }
+
+      if (this.matrix[k][i] == 0) {
+        this.appendMessage("System of equations contains free variables");
+        return;
+      }
+
+      // Swap the rows i and k
+      swapTemp = this.matrix[i];
+      this.matrix[i] = this.matrix[k];
+      this.matrix[k] = swapTemp;
+
+      // Iterate over all subsequent rows
+      for (let j = 0; j < this.rows; j++) {
+        // Reduce row by row
+        if (i != j && !this.reduceRow(this.matrix[i], this.matrix[j], i)) {
+          this.appendMessage("System of equations cannot be solved");
+          return;
+        }
+      }
+
+      this.print();
+    }
+  }
+}
+
+      function solve() {
+        let rows = document.getElementById("ta2").value.split("\n");
+        let matrix = [];
+        for (let i = 0; i < rows.length; i++) {
+          let row = rows[i].trim();
+          if (row.length === 0) {
+            continue;
+          }
+          let row2 = row.split(/[ ,]+/);
+          let row3 = [];
+          for (let j = 0; j < row2.length; j++) {
+            let val = row2[j].trim();
+            if (val.length === 0) {
+              continue;
+            }
+            row3.push(parseFloat(val));
+          }
+          matrix.push(row3);
+        }
+
+        let gj;
+        try {
+          gj = new GaussJordan(matrix); 
+        } catch (error) {
+          document.getElementById("ta2").value = error;
+          return;
+        }
+        gj.solve();
+        document.getElementById("ta2").value = gj.getMessage();
       }
   </script>
 </body>
