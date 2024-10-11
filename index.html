@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
-  <style>
+  <head>
+    <meta
+      name="generator"
+      content="HTML Tidy for HTML5 for Linux version 5.6.0"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <style>
       #table_a th,
       #table_a td {
         border: 1px solid black;
@@ -54,89 +57,134 @@
         grid-column-gap: 0px;
         grid-row-gap: 0px;
       }
-  </style>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
-</head>
-<body>
-  <div class="parent">
-    <div class="child">
-      <h2>Welcome to My Website</h2>
-      <h3>Simple percentage calculator:</h3>
-      <table id="table_a">
-        <tr>
-          <td style="width: 175px"><label>Start value:</label></td>
-          <td colspan="3"><input type="number" value="175.0" name="v1" onchange="calc1()"></td>
-        </tr>
-        <tr>
-          <td><label>Percent (0 to 100):</label></td>
-          <td colspan="3"><input type="number" value="15.0" name="v2" onchange="calc1()"></td>
-        </tr>
-        <tr>
-          <td><label>Percent (0 to 100):</label></td>
-          <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="15" name="v3" onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
-        </tr>
-        <tr>
-          <td><label>Percent:</label></td>
-          <td>±</td>
-          <td id="r1"></td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td><label>Values:</label></td>
-          <td colspan="3" id="r2"></td>
-        </tr>
-        <tr>
-          <td><label>Upper:</label></td>
-          <td colspan="3" id="r3"></td>
-        </tr>
-        <tr>
-          <td><label>Lower:</label></td>
-          <td colspan="3" id="r4"></td>
-        </tr>
-        <tr>
-          <td><label>Reverse percentage:</label></td>
-          <td colspan="3" id="r5"></td>
-        </tr>
-        <tr>
-          <td><label>Reverse percentage f:</label></td>
-          <td colspan="3" id="r6"></td>
-        </tr>
-      </table>
-    </div>
-    <div lang="de" class="child">
-      <h3>Annuitätendarlehen-Rechner:</h3>
-      <p>Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>, <code>p=Zinssatz</code>, <code>q=1+p</code>, <code>n=Darlehnslaufzeit</code>.</p>
-      <p>Werte für [K, p, n]: <input type="text" value="[1000, 0.07, 3]" name="vDarlehn" onchange="calc3()">.</p>
-      <p>Annuität: <code id="eDarlehn"></code> (Summe: <code id="eDarlehn2"></code>).</p>
-    </div>
-    <div class="child">
-      <h3>Test table:</h3>
-      <p>Calculates <code>y = 10 + 7.6*x - 0.076*x^2</code>. 101 lines are maximal shown.</p>
-      <p><input type="button" onclick="calc2()" value="Recalculate table"></p>
-      <table id="table_b" class="hover">
-        <thead>
+    </style>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="child">
+        <h2>Welcome to My Website</h2>
+        <h3>Simple percentage calculator:</h3>
+        <table id="table_a">
           <tr>
-            <th>Nr</th>
-            <th>x</th>
-            <th>y</th>
+            <td style="width: 175px"><label>Start value:</label></td>
+            <td colspan="3">
+              <input type="number" value="175.0" name="v1" onchange="calc1()" />
+            </td>
           </tr>
-        </thead>
-        <tbody id="tb_b"></tbody>
-      </table>
-    </div>
-    <div class="child">
-      <h3>Image width and height calculator:</h3>
-      <textarea id="ta1" rows="12" cols="100">One image URL per line...</textarea>
-      <p><button onclick="convert()">Convert</button></p>
-    </div>
-    <div class="child">
-      <h3>Contact:</h3>See <a href="https://github.com/tgrothe">GitHub profile</a>.
-    </div>
-    <div lang="de" class="child">
-      <h3>Lineares Gleichungssystem mit Gauß-Jordan-Algorithmus lösen:</h3>
-      <textarea id="ta2" rows="12" cols="100">
+          <tr>
+            <td><label>Percent (0 to 100):</label></td>
+            <td colspan="3">
+              <input type="number" value="15.0" name="v2" onchange="calc1()" />
+            </td>
+          </tr>
+          <tr>
+            <td><label>Percent (0 to 100):</label></td>
+            <td colspan="3">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                step="5.0"
+                value="15"
+                name="v3"
+                onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><label>Percent:</label></td>
+            <td>±</td>
+            <td id="r1"></td>
+            <td>%</td>
+          </tr>
+          <tr>
+            <td><label>Values:</label></td>
+            <td colspan="3" id="r2"></td>
+          </tr>
+          <tr>
+            <td><label>Upper:</label></td>
+            <td colspan="3" id="r3"></td>
+          </tr>
+          <tr>
+            <td><label>Lower:</label></td>
+            <td colspan="3" id="r4"></td>
+          </tr>
+          <tr>
+            <td><label>Reverse percentage:</label></td>
+            <td colspan="3" id="r5"></td>
+          </tr>
+          <tr>
+            <td><label>Reverse percentage f:</label></td>
+            <td colspan="3" id="r6"></td>
+          </tr>
+        </table>
+      </div>
+      <div lang="de" class="child">
+        <h3>Annuitätendarlehen-Rechner:</h3>
+        <p>
+          Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>,
+          <code>p=Zinssatz</code>, <code>q=1+p</code>,
+          <code>n=Darlehnslaufzeit</code>.
+        </p>
+        <p>
+          Werte für [K, p, n]:
+          <input
+            type="text"
+            value="[1000, 0.07, 3]"
+            name="vDarlehn"
+            onchange="calc3()"
+          />.
+        </p>
+        <p>
+          Annuität: <code id="eDarlehn"></code> (Summe:
+          <code id="eDarlehn2"></code>).
+        </p>
+      </div>
+      <div class="child">
+        <h3>Test table:</h3>
+        <p>
+          Calculates <code>y = 10 + 7.6*x - 0.076*x^2</code>. 101 lines are
+          maximal shown.
+        </p>
+        <p>
+          <input type="button" onclick="calc2()" value="Recalculate table" />
+        </p>
+        <table id="table_b" class="hover">
+          <thead>
+            <tr>
+              <th>Nr</th>
+              <th>x</th>
+              <th>y</th>
+            </tr>
+          </thead>
+          <tbody id="tb_b"></tbody>
+        </table>
+      </div>
+      <div class="child">
+        <h3>Image width and height calculator:</h3>
+        <textarea id="ta1" rows="12" cols="100">
+One image URL per line...</textarea
+        >
+        <p><button onclick="convert()">Convert</button></p>
+      </div>
+      <div class="child">
+        <h3>Contact:</h3>
+        See <a href="https://github.com/tgrothe">GitHub profile</a>.
+      </div>
+      <div lang="de" class="child">
+        <h3>Lineares Gleichungssystem mit Gauß-Jordan-Algorithmus lösen:</h3>
+        <textarea id="ta2" rows="12" cols="100">
   1, 1, 0, 0, 0, 0, 0, 47
   0, 1, 1, 0, 0, 0, 0, 39
   0, 0, 0, 1, 0, 0, 0, 12
@@ -144,11 +192,12 @@
   -1, 0, 0, 1, 1, 0, 0, 0
   0, -1, 0, 0, 1, 1, 0, 0
   0, 0, -1, 0, 0, 1, 1, 0
-      </textarea>
-      <p><button onclick="solve()">Lösen</button></p>
+      </textarea
+        >
+        <p><button onclick="solve()">Lösen</button></p>
+      </div>
     </div>
-  </div>
-  <script>
+    <script>
       function calc1() {
         try {
           let v1 = parseFloat(document.getElementsByName("v1")[0].value);
@@ -250,87 +299,90 @@
       }
 
       class GaussJordan {
-  constructor(matrix) {
-    this.message = "";
-    this.matrix = matrix;
-    this.rows = matrix.length;
-    this.cols = matrix[0].length;
+        constructor(matrix) {
+          this.message = "";
+          this.matrix = matrix;
+          this.rows = matrix.length;
+          this.cols = matrix[0].length;
 
-    for (let i = 0; i < this.rows; i++) {
-      if (this.matrix[i].length !== this.rows + 1) {
-        this.appendMessage("Invalid matrix dimensions");
-        throw "Invalid matrix dimensions";
-      }
-    }
-  }
+          for (let i = 0; i < this.rows; i++) {
+            if (this.matrix[i].length !== this.rows + 1) {
+              this.appendMessage("Invalid matrix dimensions");
+              throw "Invalid matrix dimensions";
+            }
+          }
+        }
 
-  appendMessage(message) {
-    this.message += message + "\n";
-  }
+        appendMessage(message) {
+          this.message += message + "\n";
+        }
 
-  getMessage() {
-    return this.message;
-  }
+        getMessage() {
+          return this.message;
+        }
 
-  print() {
-    for (let i = 0; i < this.rows; i++) {
-      let s = "";
-      for (let j = 0; j < this.cols; j++) {
-        s += Number (this.matrix[i][j]).toFixed(2) + "  ";
-      }
-      this.appendMessage(s);
-    }
-    this.appendMessage("");
-  }
+        print() {
+          for (let i = 0; i < this.rows; i++) {
+            let s = "";
+            for (let j = 0; j < this.cols; j++) {
+              s += Number(this.matrix[i][j]).toFixed(2) + "  ";
+            }
+            this.appendMessage(s);
+          }
+          this.appendMessage("");
+        }
 
-  reduceRow(r1, r2, pos) {
-    if (r1.length != r2.length) {
-      return false;
-    }
+        reduceRow(r1, r2, pos) {
+          if (r1.length != r2.length) {
+            return false;
+          }
 
-    let factor = r2[pos] / r1[pos];
-    for (let i = pos; i < r1.length; i++) {
-      r2[i] -= factor * r1[i];
-    }
-    return true;
-  }
+          let factor = r2[pos] / r1[pos];
+          for (let i = pos; i < r1.length; i++) {
+            r2[i] -= factor * r1[i];
+          }
+          return true;
+        }
 
-  solve() {
-    let k; // pivot
-    let swapTemp;
+        solve() {
+          let k; // pivot
+          let swapTemp;
 
-    for (let i = 0; i < this.rows; i++) {
-      k = i;
+          for (let i = 0; i < this.rows; i++) {
+            k = i;
 
-      for (let j = i + 1; j < this.rows; j++) {
-        if (this.matrix[j][i] > this.matrix[k][i]) {
-          k = j;
+            for (let j = i + 1; j < this.rows; j++) {
+              if (this.matrix[j][i] > this.matrix[k][i]) {
+                k = j;
+              }
+            }
+
+            if (this.matrix[k][i] == 0) {
+              this.appendMessage("System of equations contains free variables");
+              return;
+            }
+
+            // Swap the rows i and k
+            swapTemp = this.matrix[i];
+            this.matrix[i] = this.matrix[k];
+            this.matrix[k] = swapTemp;
+
+            // Iterate over all subsequent rows
+            for (let j = 0; j < this.rows; j++) {
+              // Reduce row by row
+              if (
+                i != j &&
+                !this.reduceRow(this.matrix[i], this.matrix[j], i)
+              ) {
+                this.appendMessage("System of equations cannot be solved");
+                return;
+              }
+            }
+
+            this.print();
+          }
         }
       }
-
-      if (this.matrix[k][i] == 0) {
-        this.appendMessage("System of equations contains free variables");
-        return;
-      }
-
-      // Swap the rows i and k
-      swapTemp = this.matrix[i];
-      this.matrix[i] = this.matrix[k];
-      this.matrix[k] = swapTemp;
-
-      // Iterate over all subsequent rows
-      for (let j = 0; j < this.rows; j++) {
-        // Reduce row by row
-        if (i != j && !this.reduceRow(this.matrix[i], this.matrix[j], i)) {
-          this.appendMessage("System of equations cannot be solved");
-          return;
-        }
-      }
-
-      this.print();
-    }
-  }
-}
 
       function solve() {
         let rows = document.getElementById("ta2").value.split("\n");
@@ -354,7 +406,7 @@
 
         let gj;
         try {
-          gj = new GaussJordan(matrix); 
+          gj = new GaussJordan(matrix);
         } catch (error) {
           document.getElementById("ta2").value = error;
           return;
@@ -362,6 +414,6 @@
         gj.solve();
         document.getElementById("ta2").value = gj.getMessage();
       }
-  </script>
-</body>
+    </script>
+  </body>
 </html>
