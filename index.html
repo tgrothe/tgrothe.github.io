@@ -1,9 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <title>Mathe-Tools</title>
-    <style>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="utf-8">
+  <title>Mathe-Tools</title>
+  <style>
       :root {
         --color-bg-dark: #333333;
         --color-text-dark: #cccccc;
@@ -44,134 +45,82 @@
         grid-column-gap: 0px;
         grid-row-gap: 0px;
       }
-    </style>
-  </head>
-
-  <body>
-    <div style="width: fit-content; font-size: small">
-      <fieldset>
-        <legend>Theme:</legend>
-        <input
-          type="radio"
-          id="slm"
-          name="theme"
-          style="margin-top: -1px; vertical-align: middle"
-          onclick="setLightMode();"
-          checked
-        />
-        <label for="slm">Light</label>
-        <input
-          type="radio"
-          id="sdm"
-          name="theme"
-          style="margin-top: -1px; vertical-align: middle"
-          onclick="setDarkMode();"
-        />
-        <label for="sdm">Dark</label>
-      </fieldset>
+  </style>
+</head>
+<body>
+  <div style="width: fit-content; font-size: small">
+    <fieldset>
+      <legend>Theme:</legend> <input type="radio" id="slm" name="theme" style="margin-top: -1px; vertical-align: middle" onclick="setLightMode();" checked> <label for="slm">Light</label> <input type="radio" id="sdm" name="theme" style="margin-top: -1px; vertical-align: middle" onclick="setDarkMode();"> <label for="sdm">Dark</label>
+    </fieldset>
+  </div>
+  <div class="parent">
+    <div lang="en">
+      <h3>Simple percentage calculator:</h3>
+      <table id="table_a">
+        <tr>
+          <td style="width: 175px"><label>Start value:</label></td>
+          <td colspan="3"><input type="number" value="175.0" name="v1" onchange="calc1()"></td>
+        </tr>
+        <tr>
+          <td><label>Percent (0 to 100):</label></td>
+          <td colspan="3"><input type="number" value="15.0" name="v2" onchange="calc1()"></td>
+        </tr>
+        <tr>
+          <td><label>Percent (0 to 100):</label></td>
+          <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="15" name="v3" onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
+        </tr>
+        <tr>
+          <td><label>Percent:</label></td>
+          <td>±</td>
+          <td id="r1"></td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td><label>Values:</label></td>
+          <td colspan="3" id="r2"></td>
+        </tr>
+        <tr>
+          <td><label>Upper:</label></td>
+          <td colspan="3" id="r3"></td>
+        </tr>
+        <tr>
+          <td><label>Lower:</label></td>
+          <td colspan="3" id="r4"></td>
+        </tr>
+        <tr>
+          <td><label>Reverse percentage:</label></td>
+          <td colspan="3" id="r5"></td>
+        </tr>
+        <tr>
+          <td><label>Reverse percentage f:</label></td>
+          <td colspan="3" id="r6"></td>
+        </tr>
+      </table>
     </div>
-    <div class="parent">
-      <div lang="en">
-        <h3>Simple percentage calculator:</h3>
-        <table id="table_a">
-          <tr>
-            <td style="width: 175px"><label>Start value:</label></td>
-            <td colspan="3">
-              <input type="number" value="175.0" name="v1" onchange="calc1()" />
-            </td>
-          </tr>
-          <tr>
-            <td><label>Percent (0 to 100):</label></td>
-            <td colspan="3">
-              <input type="number" value="15.0" name="v2" onchange="calc1()" />
-            </td>
-          </tr>
-          <tr>
-            <td><label>Percent (0 to 100):</label></td>
-            <td colspan="3">
-              <input
-                type="range"
-                min="0"
-                max="100"
-                step="5.0"
-                value="15"
-                name="v3"
-                onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td><label>Percent:</label></td>
-            <td>±</td>
-            <td id="r1"></td>
-            <td>%</td>
-          </tr>
-          <tr>
-            <td><label>Values:</label></td>
-            <td colspan="3" id="r2"></td>
-          </tr>
-          <tr>
-            <td><label>Upper:</label></td>
-            <td colspan="3" id="r3"></td>
-          </tr>
-          <tr>
-            <td><label>Lower:</label></td>
-            <td colspan="3" id="r4"></td>
-          </tr>
-          <tr>
-            <td><label>Reverse percentage:</label></td>
-            <td colspan="3" id="r5"></td>
-          </tr>
-          <tr>
-            <td><label>Reverse percentage f:</label></td>
-            <td colspan="3" id="r6"></td>
-          </tr>
-        </table>
-      </div>
-      <div>
-        <h3>Annuitätendarlehen-Rechner:</h3>
-        <p>
-          Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>,
-          <code>p=Zinssatz</code>, <code>q=1+p</code>,
-          <code>n=Darlehnslaufzeit</code>.
-        </p>
-        <p>
-          Werte für [K, p, n]:
-          <input
-            type="text"
-            value="[1000, 0.07, 3]"
-            name="vDarlehn"
-            onchange="calc3()"
-          />.
-        </p>
-        <p>
-          Annuität: <code id="eDarlehn"></code> (Summe:
-          <code id="eDarlehn2"></code>).
-        </p>
-      </div>
-      <div lang="en">
-        <h3>Image width and height calculator:</h3>
-        <textarea id="ta1" rows="10" cols="50">
-One image URL per line...</textarea
-        >
-        <p><button onclick="convert()">Convert</button></p>
-      </div>
-      <div>
-        <h3>Lineares Gleichungssystem lösen:</h3>
-        <textarea id="ta2" rows="10" cols="50">
-1, 1, 0, 0, 0, 0, 0, 47
+    <div>
+      <h3>Annuitätendarlehen-Rechner:</h3>
+      <p>Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>, <code>p=Zinssatz</code>, <code>q=1+p</code>, <code>n=Darlehnslaufzeit</code>.</p>
+      <p>Werte für [K, p, n]: <input type="text" value="[1000, 0.07, 3]" name="vDarlehn" onchange="calc3()">.</p>
+      <p>Annuität: <code id="eDarlehn"></code> (Summe: <code id="eDarlehn2"></code>).</p>
+    </div>
+    <div lang="en">
+      <h3>Image width and height calculator:</h3>
+      <textarea id="ta1" rows="10" cols="50">One image URL per line...</textarea>
+      <p><button onclick="convert()">Convert</button></p>
+    </div>
+    <div>
+      <h3>Lineares Gleichungssystem lösen:</h3>
+      <textarea id="ta2" rows="10" cols="50">1, 1, 0, 0, 0, 0, 0, 47
 0, 1, 1, 0, 0, 0, 0, 39
 0, 0, 0, 1, 0, 0, 0, 12
 0, 0, 0, 0, 0, 0, 1, 5
 -1, 0, 0, 1, 1, 0, 0, 0
 0, -1, 0, 0, 1, 1, 0, 0
-0, 0, -1, 0, 0, 1, 1, 0
-</textarea
-        >
-        <p><button onclick="solve()">Lösen</button></p>
-      </div>
+0, 0, -1, 0, 0, 1, 1, 0</textarea>
+      <p><button onclick="solve()">Lösen</button></p>
     </div>
-    <script>
+  </div>
+  <script>
       function calc1() {
         try {
           let v1 = parseFloat(document.getElementsByName("v1")[0].value);
@@ -383,6 +332,6 @@ One image URL per line...</textarea
         document.getElementById("sdm").checked = true;
       }
       applyTheme();
-    </script>
-  </body>
+  </script>
+</body>
 </html>
