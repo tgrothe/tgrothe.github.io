@@ -1,50 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+  <meta charset="utf-8">
+  <title>Mathe-Tools</title>
   <style>
-      #table_a th,
-      #table_a td {
-        border: 1px solid black;
-        border-collapse: collapse;
+      :root {
+        --color-bg-dark: #333333;
+        --color-text-dark: #cccccc;
+
+        --color-bg-light: #cccccc;
+        --color-text-light: #333333;
       }
 
-      code {
-        background-color: yellowgreen;
+      body {
+        background-color: var(--color-bg-light);
+        color: var(--color-text-light);
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
       }
 
-      .field {
-        margin-bottom: 10px;
+      .dark-mode body {
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-dark);
       }
 
-      .field label {
-        display: block;
-        font-size: 12px;
-        color: #777;
+      .dark-mode input {
+        background-color: var(--color-text-dark);
       }
 
-      .field input {
-        display: block;
-        min-width: 250px;
-        line-height: 1.5;
-        font-size: 14px;
+      .dark-mode textarea {
+        background-color: var(--color-text-dark);
       }
 
-      input[type="submit"] {
-        display: block;
-        padding: 6px 30px;
-        font-size: 14px;
-        background-color: #4460aa;
-        color: #fff;
-        border: none;
-      }
-
-      div.child {
-        margin: 10px;
-        border: 1px solid black;
+      .dark-mode button {
+        background-color: var(--color-text-dark);
       }
 
       .parent {
@@ -55,14 +46,15 @@
         grid-row-gap: 0px;
       }
   </style>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 </head>
 <body>
+  <div style="width: fit-content; font-size: small">
+    <fieldset>
+      <legend>Theme:</legend> <input type="radio" id="slm" name="theme" style="margin-top: -1px; vertical-align: middle" onclick="setLightMode();" checked> <label for="slm">Light</label> <input type="radio" id="sdm" name="theme" style="margin-top: -1px; vertical-align: middle" onclick="setDarkMode();"> <label for="sdm">Dark</label>
+    </fieldset>
+  </div>
   <div class="parent">
-    <div class="child">
-      <h2>Welcome to My Website</h2>
+    <div lang="en">
       <h3>Simple percentage calculator:</h3>
       <table id="table_a">
         <tr>
@@ -105,44 +97,26 @@
         </tr>
       </table>
     </div>
-    <div lang="de" class="child">
+    <div>
       <h3>Annuitätendarlehen-Rechner:</h3>
       <p>Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>, <code>p=Zinssatz</code>, <code>q=1+p</code>, <code>n=Darlehnslaufzeit</code>.</p>
       <p>Werte für [K, p, n]: <input type="text" value="[1000, 0.07, 3]" name="vDarlehn" onchange="calc3()">.</p>
       <p>Annuität: <code id="eDarlehn"></code> (Summe: <code id="eDarlehn2"></code>).</p>
     </div>
-    <div class="child">
-      <h3>Test table:</h3>
-      <p>Calculates <code>y = 10 + 7.6*x - 0.076*x^2</code>. 101 lines are maximal shown.</p>
-      <p><input type="button" onclick="calc2()" value="Recalculate table"></p>
-      <table id="table_b" class="hover">
-        <thead>
-          <tr>
-            <th>Nr</th>
-            <th>x</th>
-            <th>y</th>
-          </tr>
-        </thead>
-        <tbody id="tb_b"></tbody>
-      </table>
-    </div>
-    <div class="child">
+    <div lang="en">
       <h3>Image width and height calculator:</h3>
-      <textarea id="ta1" rows="12" cols="100">One image URL per line...</textarea>
+      <textarea id="ta1" rows="10" cols="50">One image URL per line...</textarea>
       <p><button onclick="convert()">Convert</button></p>
     </div>
-    <div class="child">
-      <h3>Contact:</h3>See <a href="https://github.com/tgrothe">GitHub profile</a>.
-    </div>
-    <div lang="de" class="child">
-      <h3>Lineares Gleichungssystem mit Gauß-Jordan-Algorithmus lösen:</h3>
-      <textarea id="ta2" rows="12" cols="100"> 1, 1, 0, 0, 0, 0, 0, 47
-  0, 1, 1, 0, 0, 0, 0, 39
-  0, 0, 0, 1, 0, 0, 0, 12
-  0, 0, 0, 0, 0, 0, 1, 5
-  -1, 0, 0, 1, 1, 0, 0, 0
-  0, -1, 0, 0, 1, 1, 0, 0
-  0, 0, -1, 0, 0, 1, 1, 0</textarea>
+    <div>
+      <h3>Lineares Gleichungssystem lösen:</h3>
+      <textarea id="ta2" rows="10" cols="50">1, 1, 0, 0, 0, 0, 0, 47
+0, 1, 1, 0, 0, 0, 0, 39
+0, 0, 0, 1, 0, 0, 0, 12
+0, 0, 0, 0, 0, 0, 1, 5
+-1, 0, 0, 1, 1, 0, 0, 0
+0, -1, 0, 0, 1, 1, 0, 0
+0, 0, -1, 0, 0, 1, 1, 0</textarea>
       <p><button onclick="solve()">Lösen</button></p>
     </div>
   </div>
@@ -169,33 +143,6 @@
         }
       }
       calc1();
-
-      function calc2() {
-        if (!$.fn.dataTable.isDataTable("#table_b")) {
-          // DataTable is not initialized
-          $("#table_b").DataTable({
-            lengthMenu: [
-              [5, 10, -1],
-              [5, 10, "All"],
-            ],
-            pageLength: 5,
-          });
-        }
-
-        const numberOfRows = 101;
-        $("#table_b").dataTable().api().clear();
-        for (let i = 0; i < numberOfRows; i++) {
-          let x = i;
-          // 10 + 7.6 * x - 0.076 * x * x;
-          let y = Number(10 + 7.6 * x - 0.076 * x * x).toFixed(3);
-          $("#table_b")
-            .dataTable()
-            .api()
-            .row.add([i + 1, x, y])
-            .draw();
-        }
-      }
-      calc2();
 
       function calc3() {
         try {
@@ -363,6 +310,28 @@
         gj.solve();
         document.getElementById("ta2").value = gj.getMessage();
       }
+
+      function applyTheme() {
+        let theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          setDarkMode();
+        } else {
+          setLightMode();
+        }
+      }
+      function setLightMode() {
+        document.documentElement.classList.remove("dark-mode");
+        localStorage.setItem("theme", "light");
+        document.getElementById("slm").checked = true;
+        document.getElementById("sdm").checked = false;
+      }
+      function setDarkMode() {
+        document.documentElement.classList.add("dark-mode");
+        localStorage.setItem("theme", "dark");
+        document.getElementById("slm").checked = false;
+        document.getElementById("sdm").checked = true;
+      }
+      applyTheme();
   </script>
 </body>
 </html>
