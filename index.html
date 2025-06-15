@@ -1,126 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mathe-Tools</title>
+    <style>
+      :root {
+        --color-bg-dark: #333333;
+        --color-text-dark: #cccccc;
 
-<head>
-  <meta charset="utf-8">
-  <title>Mathe-Tools</title>
-  <style>
-    :root {
-      --color-bg-dark: #333333;
-      --color-text-dark: #cccccc;
+        --color-bg-light: #cccccc;
+        --color-text-light: #333333;
+      }
 
-      --color-bg-light: #cccccc;
-      --color-text-light: #333333;
-    }
+      body {
+        background-color: var(--color-bg-light);
+        color: var(--color-text-light);
 
-    body {
-      background-color: var(--color-bg-light);
-      color: var(--color-text-light);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+      }
 
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 16px;
-    }
+      .dark-mode body {
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-dark);
+      }
 
-    .dark-mode body {
-      background-color: var(--color-bg-dark);
-      color: var(--color-text-dark);
-    }
+      .dark-mode input {
+        background-color: var(--color-text-dark);
+      }
 
-    .dark-mode input {
-      background-color: var(--color-text-dark);
-    }
+      .dark-mode textarea {
+        background-color: var(--color-text-dark);
+      }
 
-    .dark-mode textarea {
-      background-color: var(--color-text-dark);
-    }
+      .dark-mode button {
+        background-color: var(--color-text-dark);
+      }
 
-    .dark-mode button {
-      background-color: var(--color-text-dark);
-    }
+      .parent {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+      }
+    </style>
+  </head>
 
-    .parent {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      grid-column-gap: 0px;
-      grid-row-gap: 0px;
-    }
-  </style>
-</head>
-
-<body>
-  <div style="width: fit-content; font-size: small">
-    <fieldset>
-      <legend>Theme:</legend>
-      <input type="radio" id="slm" name="theme" style="margin-top: -1px; vertical-align: middle"
-        onclick="setLightMode();" checked>
-      <label for="slm">Light</label>
-      <input type="radio" id="sdm" name="theme" style="margin-top: -1px; vertical-align: middle"
-        onclick="setDarkMode();">
-      <label for="sdm">Dark</label>
-    </fieldset>
-  </div>
-  <div class="parent">
-    <div lang="en">
-      <h3>Simple percentage calculator:</h3>
-      <table id="table_a">
-        <tr>
-          <td style="width: 175px"><label>Start value:</label></td>
-          <td colspan="3"><input type="number" value="175.0" name="v1" onchange="calc1()"></td>
-        </tr>
-        <tr>
-          <td><label>Percent (0 to 100):</label></td>
-          <td colspan="3"><input type="number" value="15.0" name="v2" onchange="calc1()"></td>
-        </tr>
-        <tr>
-          <td><label>Percent (0 to 100):</label></td>
-          <td colspan="3"><input type="range" min="0" max="100" step="5.0" value="15" name="v3"
-              onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"></td>
-        </tr>
-        <tr>
-          <td><label>Percent:</label></td>
-          <td>±</td>
-          <td id="r1"></td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td><label>Values:</label></td>
-          <td colspan="3" id="r2"></td>
-        </tr>
-        <tr>
-          <td><label>Upper:</label></td>
-          <td colspan="3" id="r3"></td>
-        </tr>
-        <tr>
-          <td><label>Lower:</label></td>
-          <td colspan="3" id="r4"></td>
-        </tr>
-        <tr>
-          <td><label>Reverse percentage:</label></td>
-          <td colspan="3" id="r5"></td>
-        </tr>
-        <tr>
-          <td><label>Reverse percentage f:</label></td>
-          <td colspan="3" id="r6"></td>
-        </tr>
-      </table>
+  <body>
+    <div style="width: fit-content; font-size: small">
+      <fieldset>
+        <legend>Theme:</legend>
+        <input
+          type="radio"
+          id="slm"
+          name="theme"
+          style="margin-top: -1px; vertical-align: middle"
+          onclick="setLightMode();"
+          checked
+        />
+        <label for="slm">Light</label>
+        <input
+          type="radio"
+          id="sdm"
+          name="theme"
+          style="margin-top: -1px; vertical-align: middle"
+          onclick="setDarkMode();"
+        />
+        <label for="sdm">Dark</label>
+      </fieldset>
     </div>
-    <div>
-      <h3>Annuitätendarlehen-Rechner:</h3>
-      <p>Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>, <code>p=Zinssatz</code>, <code>q=1+p</code>,
-        <code>n=Darlehnslaufzeit</code>.
-      </p>
-      <p>Werte für [K, p, n]: <input type="text" value="[1000, 0.07, 3]" name="vDarlehn" onchange="calc3()">.</p>
-      <p>Annuität: <code id="eDarlehn"></code> (Summe: <code id="eDarlehn2"></code>).</p>
-    </div>
-    <div lang="en">
-      <h3>Image width and height calculator:</h3>
-      <textarea id="ta1" rows="10" cols="50">One image URL per line...</textarea>
-      <p><button onclick="convert()">Convert</button></p>
-    </div>
-    <div>
-      <h3>Lineares Gleichungssystem lösen:</h3>
-      <textarea id="ta2" rows="10" cols="50">
+    <div class="parent">
+      <div lang="en">
+        <h3>Simple percentage calculator:</h3>
+        <table id="table_a">
+          <tr>
+            <td style="width: 175px"><label>Start value:</label></td>
+            <td colspan="3">
+              <input type="number" value="175.0" name="v1" onchange="calc1()" />
+            </td>
+          </tr>
+          <tr>
+            <td><label>Percent (0 to 100):</label></td>
+            <td colspan="3">
+              <input type="number" value="15.0" name="v2" onchange="calc1()" />
+            </td>
+          </tr>
+          <tr>
+            <td><label>Percent (0 to 100):</label></td>
+            <td colspan="3">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                step="5.0"
+                value="15"
+                name="v3"
+                onchange="document.getElementsByName('v2')[0].value = this.value; calc1();"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><label>Percent:</label></td>
+            <td>±</td>
+            <td id="r1"></td>
+            <td>%</td>
+          </tr>
+          <tr>
+            <td><label>Values:</label></td>
+            <td colspan="3" id="r2"></td>
+          </tr>
+          <tr>
+            <td><label>Upper:</label></td>
+            <td colspan="3" id="r3"></td>
+          </tr>
+          <tr>
+            <td><label>Lower:</label></td>
+            <td colspan="3" id="r4"></td>
+          </tr>
+          <tr>
+            <td><label>Reverse percentage:</label></td>
+            <td colspan="3" id="r5"></td>
+          </tr>
+          <tr>
+            <td><label>Reverse percentage f:</label></td>
+            <td colspan="3" id="r6"></td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <h3>Annuitätendarlehen-Rechner:</h3>
+        <p>
+          Legende: <code>A=Annuität</code>, <code>K=Darlehnsbetrag</code>,
+          <code>p=Zinssatz</code>, <code>q=1+p</code>,
+          <code>n=Darlehnslaufzeit</code>.
+        </p>
+        <p>
+          Werte für [K, p, n]:
+          <input
+            type="text"
+            value="[1000, 0.07, 3]"
+            name="vDarlehn"
+            onchange="calc3()"
+          />.
+        </p>
+        <p>
+          Annuität: <code id="eDarlehn"></code> (Summe:
+          <code id="eDarlehn2"></code>).
+        </p>
+      </div>
+      <div lang="en">
+        <h3>Image width and height calculator:</h3>
+        <textarea id="ta1" rows="10" cols="50">
+One image URL per line...</textarea
+        >
+        <p><button onclick="convert()">Convert</button></p>
+      </div>
+      <div>
+        <h3>Lineares Gleichungssystem lösen:</h3>
+        <textarea id="ta2" rows="10" cols="50">
 1, 1, 0, 0, 0, 0, 0, 47
 0, 1, 1, 0, 0, 0, 0, 39
 0, 0, 0, 1, 0, 0, 0, 12
@@ -128,223 +166,223 @@
 -1, 0, 0, 1, 1, 0, 0, 0
 0, -1, 0, 0, 1, 1, 0, 0
 0, 0, -1, 0, 0, 1, 1, 0
-</textarea>
-      <p><button onclick="solve()">Lösen</button></p>
+</textarea
+        >
+        <p><button onclick="solve()">Lösen</button></p>
+      </div>
     </div>
-  </div>
-  <script>
-    function calc1() {
-      try {
-        let v1 = parseFloat(document.getElementsByName("v1")[0].value);
-        let v2 = parseFloat(document.getElementsByName("v2")[0].value);
-        let v3 = (v2 / 100.0) * v1;
-        let v4 = v1 + v3;
-        let v5 = v1 - v3;
-        let v6 = Number((v1 / v4 - 1.0) * 100.0).toFixed(3);
-        let v7 = Number((v1 / v5 - 1.0) * 100.0).toFixed(3);
-        let v8 = Number((v1 / v4) * 100.0).toFixed(3);
-        let v9 = Number((v1 / v5) * 100.0).toFixed(3);
-        document.getElementById("r1").innerText = v2;
-        document.getElementById("r2").innerText = v1 + ", " + v2 + ", " + v3;
-        document.getElementById("r3").innerText = v4;
-        document.getElementById("r4").innerText = v5;
-        document.getElementById("r5").innerText = v6 + ", " + v7;
-        document.getElementById("r6").innerText = v8 + ", " + v9;
-      } catch (error) {
-        alert("The input values are not valid.");
+    <script>
+      function calc1() {
+        try {
+          let v1 = parseFloat(document.getElementsByName("v1")[0].value);
+          let v2 = parseFloat(document.getElementsByName("v2")[0].value);
+          let v3 = (v2 / 100.0) * v1;
+          let v4 = v1 + v3;
+          let v5 = v1 - v3;
+          let v6 = Number((v1 / v4 - 1.0) * 100.0).toFixed(3);
+          let v7 = Number((v1 / v5 - 1.0) * 100.0).toFixed(3);
+          let v8 = Number((v1 / v4) * 100.0).toFixed(3);
+          let v9 = Number((v1 / v5) * 100.0).toFixed(3);
+          document.getElementById("r1").innerText = v2;
+          document.getElementById("r2").innerText = v1 + ", " + v2 + ", " + v3;
+          document.getElementById("r3").innerText = v4;
+          document.getElementById("r4").innerText = v5;
+          document.getElementById("r5").innerText = v6 + ", " + v7;
+          document.getElementById("r6").innerText = v8 + ", " + v9;
+        } catch (error) {
+          alert("The input values are not valid.");
+        }
       }
-    }
-    calc1();
+      calc1();
 
-    function calc3() {
-      try {
-        const json = JSON.parse(
-          document.getElementsByName("vDarlehn")[0].value,
+      function calc3() {
+        try {
+          const json = JSON.parse(
+            document.getElementsByName("vDarlehn")[0].value,
+          );
+          const k = json[0];
+          const p = json[1];
+          const q = 1.0 + p;
+          const n = json[2];
+          const a = ((p * Math.pow(q, n)) / (Math.pow(q, n) - 1.0)) * k;
+          const a2 = a * n;
+          document.getElementById("eDarlehn").innerText = Number(a).toFixed(2);
+          document.getElementById("eDarlehn2").innerText =
+            Number(a2).toFixed(2);
+        } catch (error) {
+          alert("The input values are not valid.");
+        }
+      }
+      calc3();
+
+      async function convert() {
+        let rows = document.getElementById("ta1").value.split("\n");
+        let s = "[\n";
+        for (let i = 0; i < rows.length; i++) {
+          let row = rows[i];
+          if (row.startsWith('"')) {
+            row = row.substring(1, row.length - 1);
+          }
+          s += await preloadImage(row);
+        }
+        s += "];";
+        document.getElementById("ta1").value = s;
+      }
+
+      async function preloadImage(imgSrc) {
+        let img = new Image();
+        try {
+          await new Promise((resolve, reject) => {
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+            img.src = imgSrc;
+          });
+        } catch (error) {
+          return '  [ "' + imgSrc + '", ' + -1 + ", " + -1 + " ],\n";
+        }
+        return (
+          '  [ "' + imgSrc + '", ' + img.width + ", " + img.height + " ],\n"
         );
-        const k = json[0];
-        const p = json[1];
-        const q = 1.0 + p;
-        const n = json[2];
-        const a = ((p * Math.pow(q, n)) / (Math.pow(q, n) - 1.0)) * k;
-        const a2 = a * n;
-        document.getElementById("eDarlehn").innerText = Number(a).toFixed(2);
-        document.getElementById("eDarlehn2").innerText =
-          Number(a2).toFixed(2);
-      } catch (error) {
-        alert("The input values are not valid.");
-      }
-    }
-    calc3();
-
-    async function convert() {
-      let rows = document.getElementById("ta1").value.split("\n");
-      let s = "[\n";
-      for (let i = 0; i < rows.length; i++) {
-        let row = rows[i];
-        if (row.startsWith('"')) {
-          row = row.substring(1, row.length - 1);
-        }
-        s += await preloadImage(row);
-      }
-      s += "];";
-      document.getElementById("ta1").value = s;
-    }
-
-    async function preloadImage(imgSrc) {
-      let img = new Image();
-      try {
-        await new Promise((resolve, reject) => {
-          img.onload = () => resolve(img);
-          img.onerror = reject;
-          img.src = imgSrc;
-        });
-      } catch (error) {
-        return '  [ "' + imgSrc + '", ' + -1 + ", " + -1 + " ],\n";
-      }
-      return (
-        '  [ "' + imgSrc + '", ' + img.width + ", " + img.height + " ],\n"
-      );
-    }
-
-    class GaussJordan {
-      constructor(matrix) {
-        this.message = "";
-        this.matrix = matrix;
-        this.rows = matrix.length;
-        this.cols = matrix[0].length;
-
-        for (let i = 0; i < this.rows; i++) {
-          if (this.matrix[i].length !== this.rows + 1) {
-            this.appendMessage("Invalid matrix dimensions");
-            throw "Invalid matrix dimensions";
-          }
-        }
       }
 
-      appendMessage(message) {
-        this.message += message + "\n";
-      }
+      class GaussJordan {
+        constructor(matrix) {
+          this.message = "";
+          this.matrix = matrix;
+          this.rows = matrix.length;
+          this.cols = matrix[0].length;
 
-      getMessage() {
-        return this.message;
-      }
-
-      print() {
-        for (let i = 0; i < this.rows; i++) {
-          let s = "";
-          for (let j = 0; j < this.cols; j++) {
-            s += Number(this.matrix[i][j]).toFixed(2) + "  ";
-          }
-          this.appendMessage(s);
-        }
-        this.appendMessage("");
-      }
-
-      reduceRow(r1, r2, pos) {
-        if (r1.length != r2.length) {
-          return false;
-        }
-
-        let factor = r2[pos] / r1[pos];
-        for (let i = pos; i < r1.length; i++) {
-          r2[i] -= factor * r1[i];
-        }
-        return true;
-      }
-
-      solve() {
-        let k; // pivot
-        let swapTemp;
-
-        for (let i = 0; i < this.rows; i++) {
-          k = i;
-
-          for (let j = i + 1; j < this.rows; j++) {
-            if (this.matrix[j][i] > this.matrix[k][i]) {
-              k = j;
+          for (let i = 0; i < this.rows; i++) {
+            if (this.matrix[i].length !== this.rows + 1) {
+              this.appendMessage("Invalid matrix dimensions");
+              throw "Invalid matrix dimensions";
             }
           }
+        }
 
-          if (this.matrix[k][i] == 0) {
-            this.appendMessage("System of equations contains free variables");
-            return;
+        appendMessage(message) {
+          this.message += message + "\n";
+        }
+
+        getMessage() {
+          return this.message;
+        }
+
+        print() {
+          for (let i = 0; i < this.rows; i++) {
+            let s = "";
+            for (let j = 0; j < this.cols; j++) {
+              s += Number(this.matrix[i][j]).toFixed(2) + "  ";
+            }
+            this.appendMessage(s);
+          }
+          this.appendMessage("");
+        }
+
+        reduceRow(r1, r2, pos) {
+          if (r1.length != r2.length) {
+            return false;
           }
 
-          // Swap the rows i and k
-          swapTemp = this.matrix[i];
-          this.matrix[i] = this.matrix[k];
-          this.matrix[k] = swapTemp;
+          let factor = r2[pos] / r1[pos];
+          for (let i = pos; i < r1.length; i++) {
+            r2[i] -= factor * r1[i];
+          }
+          return true;
+        }
 
-          // Iterate over all subsequent rows
-          for (let j = 0; j < this.rows; j++) {
-            // Reduce row by row
-            if (
-              i != j &&
-              !this.reduceRow(this.matrix[i], this.matrix[j], i)
-            ) {
-              this.appendMessage("System of equations cannot be solved");
+        solve() {
+          let k; // pivot
+          let swapTemp;
+
+          for (let i = 0; i < this.rows; i++) {
+            k = i;
+
+            for (let j = i + 1; j < this.rows; j++) {
+              if (this.matrix[j][i] > this.matrix[k][i]) {
+                k = j;
+              }
+            }
+
+            if (this.matrix[k][i] == 0) {
+              this.appendMessage("System of equations contains free variables");
               return;
             }
-          }
 
-          this.print();
+            // Swap the rows i and k
+            swapTemp = this.matrix[i];
+            this.matrix[i] = this.matrix[k];
+            this.matrix[k] = swapTemp;
+
+            // Iterate over all subsequent rows
+            for (let j = 0; j < this.rows; j++) {
+              // Reduce row by row
+              if (
+                i != j &&
+                !this.reduceRow(this.matrix[i], this.matrix[j], i)
+              ) {
+                this.appendMessage("System of equations cannot be solved");
+                return;
+              }
+            }
+
+            this.print();
+          }
         }
       }
-    }
 
-    function solve() {
-      let rows = document.getElementById("ta2").value.split("\n");
-      let matrix = [];
-      for (let i = 0; i < rows.length; i++) {
-        let row = rows[i].trim();
-        if (row.length === 0) {
-          continue;
-        }
-        let row2 = row.split(/[ ,]+/);
-        let row3 = [];
-        for (let j = 0; j < row2.length; j++) {
-          let val = row2[j].trim();
-          if (val.length === 0) {
+      function solve() {
+        let rows = document.getElementById("ta2").value.split("\n");
+        let matrix = [];
+        for (let i = 0; i < rows.length; i++) {
+          let row = rows[i].trim();
+          if (row.length === 0) {
             continue;
           }
-          row3.push(parseFloat(val));
+          let row2 = row.split(/[ ,]+/);
+          let row3 = [];
+          for (let j = 0; j < row2.length; j++) {
+            let val = row2[j].trim();
+            if (val.length === 0) {
+              continue;
+            }
+            row3.push(parseFloat(val));
+          }
+          matrix.push(row3);
         }
-        matrix.push(row3);
+
+        let gj;
+        try {
+          gj = new GaussJordan(matrix);
+        } catch (error) {
+          document.getElementById("ta2").value = error;
+          return;
+        }
+        gj.solve();
+        document.getElementById("ta2").value = gj.getMessage();
       }
 
-      let gj;
-      try {
-        gj = new GaussJordan(matrix);
-      } catch (error) {
-        document.getElementById("ta2").value = error;
-        return;
+      function applyTheme() {
+        let theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          setDarkMode();
+        } else {
+          setLightMode();
+        }
       }
-      gj.solve();
-      document.getElementById("ta2").value = gj.getMessage();
-    }
-
-    function applyTheme() {
-      let theme = localStorage.getItem("theme");
-      if (theme === "dark") {
-        setDarkMode();
-      } else {
-        setLightMode();
+      function setLightMode() {
+        document.documentElement.classList.remove("dark-mode");
+        localStorage.setItem("theme", "light");
+        document.getElementById("slm").checked = true;
+        document.getElementById("sdm").checked = false;
       }
-    }
-    function setLightMode() {
-      document.documentElement.classList.remove("dark-mode");
-      localStorage.setItem("theme", "light");
-      document.getElementById("slm").checked = true;
-      document.getElementById("sdm").checked = false;
-    }
-    function setDarkMode() {
-      document.documentElement.classList.add("dark-mode");
-      localStorage.setItem("theme", "dark");
-      document.getElementById("slm").checked = false;
-      document.getElementById("sdm").checked = true;
-    }
-    applyTheme();
-  </script>
-</body>
-
+      function setDarkMode() {
+        document.documentElement.classList.add("dark-mode");
+        localStorage.setItem("theme", "dark");
+        document.getElementById("slm").checked = false;
+        document.getElementById("sdm").checked = true;
+      }
+      applyTheme();
+    </script>
+  </body>
 </html>
